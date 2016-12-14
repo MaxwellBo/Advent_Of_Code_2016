@@ -7,7 +7,7 @@ with open("Day_6_1_input.txt") as fp:
 
     # for least common, change the following index to -1
     #                                                     v
-    error_corrected = "".join(Counter(line).most_common()[-1][0] for line in rotated_message)
+    error_corrected = "".join(Counter(line).most_common()[0][0] for line in rotated_message)
 
     print(error_corrected)
 
