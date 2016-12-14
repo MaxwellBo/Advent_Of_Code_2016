@@ -1,15 +1,5 @@
 from itertools import *
-
-# Both of these from https://docs.python.org/3/library/itertools.html#recipes
-def grouper(iterable, n, fillvalue=None):
-    "Collect data into fixed-length chunks or blocks"
-    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
-    args = [iter(iterable)] * n
-    return zip_longest(*args, fillvalue=fillvalue)
-
-def flatten(listOfLists):
-    "Flatten one level of nesting"
-    return chain.from_iterable(listOfLists)
+from itertools_recipes import *
 
 with open("Day_3_1_input.txt") as fp:
     
