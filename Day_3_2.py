@@ -9,9 +9,7 @@ with open("Day_3_1_input.txt") as fp:
 
     rotated_three_lines = [zip(*three_lines[::-1]) for three_lines in groups_of_three_lines]
     
-    ungroups_of_three_lines = flatten(rotated_three_lines)
-    
-    triangles =  [[ int(side) for side in triangle ] for triangle in ungroups_of_three_lines ]
+    triangles =  [[ int(side) for side in triangle ] for triangle in flatten(rotated_three_lines) ]
 
     def is_possible(t):
         return t[0] + t[1] > t[2] and t[1] + t[2] > t[0] and t[2] + t[0] > t[1]
@@ -19,6 +17,3 @@ with open("Day_3_1_input.txt") as fp:
     possible = sum(is_possible(triangle) for triangle in triangles) 
     print(possible)
 
-
-
-    
