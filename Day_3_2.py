@@ -1,3 +1,5 @@
+# http://adventofcode.com/2016/day/3
+
 from itertools import *
 from itertools_recipes import *
 
