@@ -1,3 +1,5 @@
+import Data.Function ((&))
+
 import Data.List.Split
 import Data.List
 import Data.Ord
@@ -7,7 +9,16 @@ import qualified Data.Map as Map
 type Room = (String, Integer, String)
 
 main :: IO ()
-main = putStrLn =<< readFile "Day_4_input.txt"
+main = do
+  fileContents <- readFile "Day_4_input.txt"
+  print . partOne $ fileContents
+
+partOne :: String -> Integer 
+go fileContents = lines fileContents
+                & fmap readRoom
+                & filter isRealRoom
+                & fmap (\(_, sectorID, _) -> sectorID)
+                & sum
 
 readRoom :: String -> Room
 readRoom string = (letters, sectorID, checksum)
@@ -20,11 +31,6 @@ readRoom string = (letters, sectorID, checksum)
 
 count :: Ord a => [a] -> Map.Map a Integer
 count input = Map.fromListWith (+) [(c, 1) | c <- input]
-
--- tiebreakAlphabetically :: (Char, Integer) -> (Char, Integer) -> Ordering
--- tiebreakAlphabetically (c0, i0) (c1, i1)
---   | i0 /= i1 = compare i0 i1
---   | otherwise = compare c0 c1
 
 getTopFive :: String -> String
 getTopFive = collapse' . sort' . count'
