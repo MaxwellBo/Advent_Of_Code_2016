@@ -17,8 +17,8 @@ main = do
 
 partOne :: String -> Integer 
 partOne fileContents = getRealRooms fileContents 
-                & fmap (\(_, sectorID, _) -> sectorID)
-                & sum
+                     & fmap (\(_, sectorID, _) -> sectorID)
+                     & sum
 
 partTwo :: String -> String
 partTwo fileContents = getRealRooms fileContents

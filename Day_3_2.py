@@ -1,7 +1,7 @@
 from itertools import *
 from itertools_recipes import *
 
-with open("Day_3_1_input.txt") as fp:
+with open("Day_3_input.txt") as fp:
     
     split_lines = [line.split() for line in fp]
 

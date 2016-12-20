@@ -1,6 +1,6 @@
 # http://adventofcode.com/2016/day/3
 
-with open("Day_3_1_input.txt") as fp:
+with open("Day_3_input.txt") as fp:
     
     triangles =  [[ int(side) for side in line.split() ] for line in fp ]
 

@@ -2,7 +2,7 @@
 
 from collections import Counter
 
-with open("Day_6_1_input.txt") as fp:
+with open("Day_6_input.txt") as fp:
     rotated_message = [  "".join(char) for char in zip(*fp.read().split()[::-1]) ]
 
     # for least common, change the following index to -1
