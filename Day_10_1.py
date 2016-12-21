@@ -37,11 +37,12 @@ with open("Day_10_input.txt") as fp:
 
     graph = defaultdict(Bot)
 
-    for line in instructions.split('\n'):
+    # for line in instructions.split('\n'):
+    for line in fp:
 
         tokens = line.split()
 
-        print(tokens)
+        # print(tokens)
 
         if tokens[0] == "value":
             name = tokens[-2] + tokens[-1]

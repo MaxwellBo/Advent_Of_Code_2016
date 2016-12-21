@@ -8,6 +8,9 @@ main = do
   fileContents <- readFile "Day_7_input.txt"
   print . partOne $ fileContents
 
+partOne :: String -> Int
+partOne = length . filter (== True) . (fmap supportsTLS) . lines
+
 tokenize :: String -> ([String], [String])
 tokenize string = (fst part, tail <$> snd part)
   where 
@@ -17,9 +20,6 @@ tokenize string = (fst part, tail <$> snd part)
 
 nonEmptySubstrings :: [a] -> [[a]]
 nonEmptySubstrings = concatMap (tail . inits) . tails
-
-partOne :: String -> Int
-partOne = length . filter (== True) . (fmap supportsTLS) . lines
 
 candidatePalindromes :: String -> [String]
 candidatePalindromes = (filter (\x -> (length x) == 4)) . nonEmptySubstrings
@@ -37,3 +37,4 @@ supportsTLS string = outside && not inside
     tokens = tokenize string
     outside = (any containsPalindrome) $ (fst tokens)
     inside = (any containsPalindrome) $ (snd tokens)
+     
