@@ -5,7 +5,7 @@ import Data.List.Split
 
 main :: IO ()
 main = do
-  fileContents <- readFile "Day_7_input.txt"
+  fileContents <- readFile "inputs/Day_7_input.txt"
   print . partOne $ fileContents
 
 partOne :: String -> Int

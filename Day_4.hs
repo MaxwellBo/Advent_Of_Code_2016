@@ -13,7 +13,7 @@ type Room = (String, Integer, String)
 
 main :: IO ()
 main = do
-  fileContents <- readFile "Day_4_input.txt"
+  fileContents <- readFile "inputs/Day_4_input.txt"
   print . partOne $ fileContents
   putStrLn . partTwo $ fileContents
 

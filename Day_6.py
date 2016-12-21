@@ -4,7 +4,7 @@ from collections import Counter
 
 def main(part):
 
-    with open("Day_6_input.txt") as fp:
+    with open("inputs/Day_6_input.txt") as fp:
         rotated_message = [  "".join(char) for char in zip(*fp.read().split()[::-1]) ]
 
         index = 0 if part == 1 else -1

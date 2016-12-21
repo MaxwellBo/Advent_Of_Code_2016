@@ -33,7 +33,7 @@ bot 1 gives low to output 1 and high to bot 0
 bot 0 gives low to output 2 and high to output 0
 value 2 goes to bot 2"""
 
-with open("Day_10_input.txt") as fp:
+with open("inputs/Day_10_input.txt") as fp:
 
     graph = defaultdict(Bot)
 

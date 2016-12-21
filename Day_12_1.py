@@ -59,4 +59,4 @@ while pc < len(instructions):
         pc += 1
 
 
-print(registers)
+print(registers) # a: 318020
