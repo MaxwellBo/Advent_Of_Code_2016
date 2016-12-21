@@ -16,9 +16,9 @@ def main(part):
 
 		    groups_of_three_lines = grouper(split_lines, 3, [])
 
-		    rotated_three_lines = [zip(*three_lines[::-1]) for three_lines in groups_of_three_lines]
+		    rotated_three_lines = [zip(*three_lines[::-1]) for three_lines in groups_of_three_lines ]
 		    
-		    triangles = [[ int(side) for side in triangle ] for triangle in flatten(rotated_three_lines) ]
+		    triangles = [ [ int(side) for side in triangle ] for triangle in flatten(rotated_three_lines) ]
 
 	    possible = sum(is_possible(triangle) for triangle in triangles) 
 

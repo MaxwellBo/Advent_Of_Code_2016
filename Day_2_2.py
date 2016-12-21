@@ -48,7 +48,7 @@ def record_digit():
     code.append(numpad[y][x])
 
 if __name__ == "__main__":
-    with open("Day_2_input.txt") as fp:
+    with open("inputs/Day_2_input.txt") as fp:
         for row in fp:
             for instruction in row:
                 parse_move(instruction)

@@ -1,12 +1,10 @@
-import Data.Function ((&))
-
 main :: IO ()
 main = do 
   print . checksum $ fillDisk diskLengthOne seed
   print . checksum $ fillDisk diskLengthTwo seed
     where 
-      diskLengthOne = 272 -- 35651584 for Part Two
-      diskLengthTwo = 35651584 -- 35651584 for Part Two
+      diskLengthOne = 272
+      diskLengthTwo = 35651584
       seed = "11100010111110100"
 
 process :: String -> String
