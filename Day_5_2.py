@@ -1,3 +1,5 @@
+# http://adventofcode.com/2016/day/5
+
 import hashlib
 
 def main():
