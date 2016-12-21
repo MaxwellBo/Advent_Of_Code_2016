@@ -1,10 +1,10 @@
 import Data.Function ((&))
 
 main :: IO ()
-main = print . checksum $ fillDisk diskLength input
+main = print . checksum $ fillDisk diskLength initialState
     where 
       diskLength = 272
-      input = "11100010111110100"
+      initialState = "11100010111110100"
 
 process :: String -> String
 process a = a ++ "0" ++ b 
