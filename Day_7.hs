@@ -8,6 +8,13 @@ main = do
   fileContents <- readFile "Day_7_input.txt"
   print . partOne $ fileContents
 
+tokenize :: String -> ([String], [String])
+tokenize string = (fst part, tail <$> snd part)
+  where 
+    tokens = split (startsWith "[") string 
+        >>= split (dropDelims $ endsWith "]") 
+    part = (partition (\x -> head x /= '[')) $ tokens
+
 nonEmptySubstrings :: [a] -> [[a]]
 nonEmptySubstrings = concatMap (tail . inits) . tails
 
@@ -22,11 +29,11 @@ isPalindrome string = ((reverse string) == string)
                     && ((string !! 0) /= string !! 1) 
 
 containsPalindrome :: String -> Bool
-containsPalindrome = any . (fmap isPalindrome) . candidatePalindromes
+containsPalindrome = (True `elem`) . (fmap isPalindrome) . candidatePalindromes
 
 supportsTLS :: String -> Bool
 supportsTLS string = outside && not inside
   where 
-    tokens = splitOneOf "-[]" string
-    outside = containsPalindrome (tokens !! 0) || containsPalindrome (tokens !! 2)
-    inside = containsPalindrome (tokens !! 1)
+    tokens = tokenize string
+    outside = (any containsPalindrome) $ (fst tokens)
+    inside = (any containsPalindrome) $ (snd tokens)
