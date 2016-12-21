@@ -1,11 +1,18 @@
+-- http://adventofcode.com/2016/day/16
+
 main :: IO ()
 main = do 
-  print . checksum $ fillDisk diskLengthOne seed -- 10100011010101011
-  print . checksum $ fillDisk diskLengthTwo seed -- 01010001101011001
-    where 
-      diskLengthOne = 272
-      diskLengthTwo = 35651584
-      seed = "11100010111110100"
+  print partOne -- 10100011010101011
+  print partTwo -- 01010001101011001
+      
+seed :: String
+seed = "11100010111110100"
+
+partOne :: String
+partOne = checksum $ fillDisk 272 seed
+
+partTwo :: String 
+partTwo = checksum $ fillDisk 35651584 seed
 
 process :: String -> String
 process a = a ++ "0" ++ b 

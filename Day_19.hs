@@ -1,3 +1,5 @@
+-- http://adventofcode.com/2016/day/19
+
 import Data.Sequence as S
 
 type Elfs = S.Seq Int
