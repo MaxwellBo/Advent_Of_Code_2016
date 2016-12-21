@@ -14,9 +14,6 @@ nonEmptySubstrings = concatMap (tail . inits) . tails
 partOne :: String -> Int
 partOne = length . filter (== True) . (fmap supportsTLS) . lines
 
-tokenize :: String -> [String]
-tokenize = splitOneOf "-[]"
-
 candidatePalindromes :: String -> [String]
 candidatePalindromes = (filter (\x -> (length x) == 4)) . nonEmptySubstrings
 
@@ -30,6 +27,6 @@ containsPalindrome = any . (fmap isPalindrome) . candidatePalindromes
 supportsTLS :: String -> Bool
 supportsTLS string = outside && not inside
   where 
-    tokens = tokenize string
+    tokens = splitOneOf "-[]" string
     outside = containsPalindrome (tokens !! 0) || containsPalindrome (tokens !! 2)
     inside = containsPalindrome (tokens !! 1)
