@@ -22,7 +22,7 @@ def main(part):
 
 	    possible = sum(is_possible(triangle) for triangle in triangles) 
 
-	    print(possible) # 1838
+	    print(possible) # P1: 1032, P2: 1838
 
 if __name__ == '__main__':
 	main(1)
