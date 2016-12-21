@@ -4,20 +4,20 @@ import hashlib
 
 def main():
 
-	index = 0
+    index = 0
 
-	while True:
+    while True:
 
-		word = ("uqwqemis{}".format(index)).encode('utf-8')
+        word = ("uqwqemis{}".format(index)).encode('utf-8')
 
-		m = hashlib.md5()
-		m.update(word)
-		hash_result = m.hexdigest()
+        m = hashlib.md5()
+        m.update(word)
+        hash_result = m.hexdigest()
 
-		if hash_result[0:5] == '00000':
-			print(hash_result[5])
+        if hash_result[0:5] == '00000':
+            print(hash_result[5])
 
-		index += 1
+        index += 1
 
 if __name__ == '__main__':
-	main()
+    main() # 1a3099aa

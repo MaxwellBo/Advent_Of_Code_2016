@@ -1,7 +1,7 @@
 main :: IO ()
 main = do 
-  print . checksum $ fillDisk diskLengthOne seed
-  print . checksum $ fillDisk diskLengthTwo seed
+  print . checksum $ fillDisk diskLengthOne seed -- 10100011010101011
+  print . checksum $ fillDisk diskLengthTwo seed -- 01010001101011001
     where 
       diskLengthOne = 272
       diskLengthTwo = 35651584
