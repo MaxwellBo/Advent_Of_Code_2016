@@ -6,19 +6,15 @@ import Data.List
 main :: IO ()
 main = do 
   print partOne -- 1956
-  print partTwo
+  print partTwo -- 19995121
 
 seed :: String
 seed = ".^^^^^.^^^..^^^^^...^.^..^^^.^^....^.^...^^^...^^^^..^...^...^^.^.^...."
       ++ "...^..^^...^.^.^^..^^^^^...^."
 
-lines' :: Int
-lines' = 40
-
 partOne :: Int
 partOne = length . filter (== '.') . concat $ makeRoom 40
 
-partTwo :: Int
 partTwo = length . filter (== '.') . concat $ makeRoom 400000
 
 makeRoom :: Int -> [String]
