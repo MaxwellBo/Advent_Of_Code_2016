@@ -1,3 +1,5 @@
+-- http://adventofcode.com/2016/day/7
+
 import Data.Function ((&))
 
 import Data.List

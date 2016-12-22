@@ -10,7 +10,7 @@ def main(part):
 	with open("inputs/Day_3_input.txt") as fp:
 	    
 	    if part == 1:
-	    	triangles = [[int(side) for side in line.split()] for line in fp]
+	    	triangles = [ [ int(side) for side in line.split()] for line in fp ]
 	    else:
 		    split_lines = [line.split() for line in fp]
 
