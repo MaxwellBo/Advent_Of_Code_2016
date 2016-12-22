@@ -4,4 +4,4 @@ main :: IO ()
 main = undefined
 
 salt :: String
-salt = qzyelonm
+salt = "qzyelonm"
