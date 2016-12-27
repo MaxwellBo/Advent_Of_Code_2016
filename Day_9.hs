@@ -2,27 +2,22 @@
 
 import Data.List.Split
 
-data Atom = Marker Int Int
-          | Expr String
-          deriving (Show)
-
 main :: IO ()
 main = do 
-  fileContents <- readFile "input/Day_9_input.txt"
-  print . partOne $ fileContents
-  print "Hello world"
+  fileContents <- readFile "inputs/Day_9_input.txt"
+  print . partOne $ fileContents -- 115118
 
 partOne :: String -> Int
-partOne _ = 5
+partOne = sum . fmap (length . dc) . lines 
 
-go :: String -> String
-go ('(':xs) = (duplicate reps $ (take chars rest)) ++ go (drop chars rest)
+dc :: String -> String
+dc ('(':xs) = (duplicate repeats $ (take chars xs')) ++ dc (drop chars xs')
   where 
     marker = fst . (break (==')')) $ xs
-    rest = tail . snd . (break (==')')) $ xs
+    xs' = tail . snd . (break (==')')) $ xs
     tok = splitOn "x" marker
     chars = read (tok !! 0)
-    reps = read (tok !! 1)
+    repeats = read (tok !! 1)
     duplicate n = concat . replicate n
-go (x:xs) = x : go xs
-go [] = ""
+dc (x:xs) = x : dc xs
+dc [] = ""
