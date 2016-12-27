@@ -8,10 +8,11 @@ main = do
   print . partOne $ fileContents -- 115118
 
 partOne :: String -> Int
-partOne = sum . fmap (length . dc) . lines 
+partOne = sum . fmap dc . lines 
 
-dc :: String -> String
-dc ('(':xs) = (duplicate repeats $ (take chars xs')) ++ dc (drop chars xs')
+-- For Part Two, change "length" to "dc"
+dc :: String -> Int
+dc ('(':xs) = length (duplicate repeats $ (take chars xs')) + dc (drop chars xs')
   where 
     marker = fst . (break (==')')) $ xs
     xs' = tail . snd . (break (==')')) $ xs
@@ -19,5 +20,5 @@ dc ('(':xs) = (duplicate repeats $ (take chars xs')) ++ dc (drop chars xs')
     chars = read (tok !! 0)
     repeats = read (tok !! 1)
     duplicate n = concat . replicate n
-dc (x:xs) = x : dc xs
-dc [] = ""
+dc (x:xs) = 1 + dc xs
+dc [] = 0
