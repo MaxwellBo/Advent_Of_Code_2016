@@ -1,0 +1,50 @@
+WIDTH = 50
+HEIGHT = 6
+
+screen = falses(HEIGHT, WIDTH)
+
+function rect(width, height)
+    screen[1:height, 1:width] = true
+end
+
+function rotate_col(col, by)
+    screen[:, col + 1] = ror!(screen[:, col + 1], by)
+end
+
+function rotate_row(row, by)
+    screen[row + 1, :] = ror!(screen[row + 1, :], by)
+end
+
+function part_two(file)
+    screen = falses(HEIGHT, WIDTH)
+
+    for ln in eachline(file)
+        print(ln)
+    end
+end
+
+
+function part_one(file)
+
+    for ln in eachline(file)
+
+        tok = split(ln)
+
+        if tok[1] == "rect" 
+            args = split(tok[2], "x")
+            rect(map(x -> parse(Int, x), args)...)
+        elseif tok[2] == "row"
+            args = [ tok[3][3:end], tok[5] ]
+            rotate_row(map(x -> parse(Int, x), args)...)
+        elseif tok[2] == "column"
+            args = [ tok[3][3:end], tok[5] ]
+            rotate_col(map(x -> parse(Int, x), args)...)
+        end
+    end
+
+    print(screen)
+end
+
+open("inputs/Day_8_input.txt") do f
+    part_one(f)
+end
