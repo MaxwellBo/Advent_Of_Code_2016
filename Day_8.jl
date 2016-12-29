@@ -1,3 +1,5 @@
+# http://adventofcode.com/2016/day/8
+
 WIDTH = 50
 HEIGHT = 6
 
@@ -23,9 +25,7 @@ function part_two(file)
     end
 end
 
-
-function part_one(file)
-
+open("inputs/Day_8_input.txt") do file
     for ln in eachline(file)
 
         tok = split(ln)
@@ -40,11 +40,30 @@ function part_one(file)
             args = [ tok[3][3:end], tok[5] ]
             rotate_col(map(x -> parse(Int, x), args)...)
         end
+
     end
-
-    print(screen)
 end
 
-open("inputs/Day_8_input.txt") do f
-    part_one(f)
+# Part One
+println(sum(screen)) # 123
+
+# Part Two
+for i in 1:size(screen, 1)
+    for j in screen[i, :]
+        if j == true
+            print('#')
+        else
+            print(' ')
+        end
+    end
+    println(' ')
 end
+
+ ##  #### ###  #  # ###  #### ###    ## ###   ###
+#  # #    #  # #  # #  #    # #  #    # #  # #
+#  # ###  ###  #  # #  #   #  ###     # #  # #
+#### #    #  # #  # ###   #   #  #    # ###   ##
+#  # #    #  # #  # #    #    #  # #  # #       #
+#  # #    ###   ##  #    #### ###   ##  #    ###
+
+
