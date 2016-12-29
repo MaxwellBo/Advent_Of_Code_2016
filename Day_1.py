@@ -6,22 +6,18 @@ class Person(object):
 		self.locations = set()
 
 	def turn(self, char):
-		self.direction += -90 if char == "L" else 90
+		self.direction += -1 if char == "L" else 1
 
-		if self.direction > 359:
-			self.direction -= 360
+		if self.direction >= 4:
+			self.direction -= 4
 		elif self.direction < 0:
-			self.direction += 360
+			self.direction += 4
 
 	def step(self):
-		if self.direction == 0:
-			self.y += 1
-		elif self.direction == 90:
-			self.x += 1
-		elif self.direction == 180:
-			self.y -= 1
-		elif self.direction == 270:
-			self.x -= 1
+		directions = [(0,1), (1,0), (0,-1), (-1, 0)]
+		self.x += directions[self.direction][0]
+		self.y += directions[self.direction][1]
+
 
 	def walk(self, blocks):
 		for i in range(0, blocks):
