@@ -1,5 +1,7 @@
 -- http://adventofcode.com/2016/day/4
 
+{-# LANGUAGE RecordWildCards #-}
+
 import Data.Function ((&))
 
 import Data.List.Split
@@ -9,23 +11,27 @@ import Data.Char
 
 import qualified Data.Map as Map
 
-type Room = (String, Integer, String)
+data Room = Room
+  { letters :: String
+  , sectorID :: Integer
+  , checksum :: String
+  }
 
 main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_4_input.txt"
-  print . partOne $ fileContents
+  print . partOne $ fileContents -- 173787
   putStrLn . partTwo $ fileContents
 
 partOne :: String -> Integer 
 partOne fileContents = getRealRooms fileContents 
-                     & fmap (\(_, sectorID, _) -> sectorID)
+                     & fmap sectorID
                      & sum
 
 partTwo :: String -> String
 partTwo fileContents = getRealRooms fileContents
                      & fmap shift
-                     & fmap (\(letters, _, _) -> letters)
+                     & fmap letters
                      & unlines
 
 getRealRooms :: String -> [Room]
@@ -34,7 +40,7 @@ getRealRooms fileContents = lines fileContents
                           & filter isRealRoom
 
 readRoom :: String -> Room
-readRoom string = (letters, sectorID, checksum)
+readRoom string = Room {..}
   where 
     reversed = reverse string
     tokens = filter (not . null) $ splitOneOf "-[]" reversed
@@ -43,9 +49,7 @@ readRoom string = (letters, sectorID, checksum)
     letters = concat $ drop 2 tokens
 
 shift :: Room -> Room
-shift (letters, sectorID, checksum) = go
-  where 
-    go = ((map (shiftChar sectorID)) $ letters, sectorID, checksum)
+shift Room {..} = Room { letters = (map (shiftChar sectorID)) $ letters, .. }
 
 shiftChar :: Integer -> Char -> Char
 shiftChar offset =  castOut . rotate . castIn
@@ -64,5 +68,5 @@ getTopFive = collapse' . sort' . count'
     count'= Map.toList . count
 
 isRealRoom :: Room -> Bool
-isRealRoom (letters, sectorID, checksum) = checksum == getTopFive letters
+isRealRoom Room {..} = checksum == getTopFive letters
 

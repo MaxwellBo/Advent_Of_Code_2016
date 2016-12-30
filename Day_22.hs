@@ -1,5 +1,7 @@
 -- https://adventofcode.com/2016/day/22
 
+{-# LANGUAGE RecordWildCards #-}
+
 import Control.Monad
 import Data.List.Split
 
@@ -20,6 +22,7 @@ instance Show Node where
     | x node == 0 && y node == 0 = "O"
     | size node > 150 = "#"
     | otherwise = "."
+
 {-
 ....................#........G
 ....................#........X
@@ -66,7 +69,7 @@ To get G to position Y, there are ((31 * 5) == 155) shifts.
 
 It takes 1 further shift to swap G onto O.
 
-Therefore, the total number of shifts is (49 + (31 * 5) + 1) == 205
+Therefore, the total number of shifts is (49 + (31 * 5) + 1) == 205.
 -}
 
 main :: IO ()
@@ -97,7 +100,7 @@ viablePairs xs = do
   return (a, b)
 
 parseNode :: String -> Node
-parseNode xs = Node name x y size used available percentage
+parseNode xs = Node {..}
   where
     name = (flip (!!) 0) . words $ xs
     x = read . tail . (flip (!!) 1) . wordsBy (=='-') $ name
@@ -107,4 +110,3 @@ parseNode xs = Node name x y size used available percentage
     used = info !! 2
     available = info !! 3
     percentage = info !! 4
-
