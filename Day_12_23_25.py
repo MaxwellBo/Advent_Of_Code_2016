@@ -1,4 +1,6 @@
 # http://adventofcode.com/2016/day/12
+# http://adventofcode.com/2016/day/23
+# http://adventofcode.com/2016/day/25
 
 def main(day, part):
     with open("inputs/Day_{}_input.txt".format(day)) as fp:
@@ -14,8 +16,10 @@ def main(day, part):
                     , "d": 0
                     }
 
+        # I don't trust Python to optimize this away
+        len_program = len(program)
         # Run program
-        while pc < len(program):
+        while pc < len_program:
             ins = program[pc]
 
             if ins[0] == "cpy":
@@ -41,7 +45,7 @@ def main(day, part):
             elif ins[0] == "tgl":
                 i = pc + registers[ins[1]]
                 
-                if i < len(program): 
+                if i < len_program: 
                     if len(program[i]) == 2:
                         if program[i][0] == "inc":
                             program[i][0] = "dec"
@@ -63,3 +67,4 @@ if __name__ == '__main__':
     main(12, 1) # a: 318020
     main(12, 2) # a: 9227674
     main(23, 1) # a: 11683
+    main(23, 2) # a: 479008243
