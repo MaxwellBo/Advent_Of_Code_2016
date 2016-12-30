@@ -2,7 +2,7 @@
 # http://adventofcode.com/2016/day/23
 # http://adventofcode.com/2016/day/25
 
-def main(day, part):
+def main(day, a=0, c=0):
     with open("inputs/Day_{}_input.txt".format(day)) as fp:
 
         # Parse input
@@ -10,9 +10,10 @@ def main(day, part):
 
         # Build computer
         pc = 0
-        registers = { "a": (7 if part == 1 else 12) if day == 23 else 0 
+        out = 0
+        registers = { "a": a
                     , "b": 0
-                    , "c": 1 if day == 12 and part == 2 else 0
+                    , "c": c
                     , "d": 0
                     }
 
@@ -64,7 +65,8 @@ def main(day, part):
 
 
 if __name__ == '__main__':
-    main(12, 1) # a: 318020
-    main(12, 2) # a: 9227674
-    main(23, 1) # a: 11683
-    main(23, 2) # a: 479008243
+    main(12) # a: 318020
+    main(12, c=1) # a: 9227674
+    main(23, a=7) # a: 11683
+    main(23, a=12) # a: 479008243
+

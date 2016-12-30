@@ -2,16 +2,16 @@
 
 #### Setup
 
-`cabal sandbox init`
-`cabal install containers split mtl parallel`
+- `cabal sandbox init`
+- `cabal install containers split mtl parallel`
 
 #### Execution
 
-`cabal repl`
-`> :l <DAY>`
-`> main`
+- `cabal repl`
+- `> :l <DAY>`
+- `> main`
 
 ### Scala
 
-`sbt`
-`> run <DAY>`
+- `sbt`
+- `> run <DAY>`
