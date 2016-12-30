@@ -17,11 +17,11 @@ data Node = Node
 
 instance Show Node where
   show node
-    | used node == 0 = "_" 
-    | x node == 32 && y node == 0 = "G"
-    | x node == 0 && y node == 0 = "O"
-    | size node > 150 = "#"
-    | otherwise = "."
+    | used node              == 0   = "_" 
+    | x node == 32 && y node == 0   = "G"
+    | x node == 0  && y node == 0   = "O"
+    | size node              >= 150 = "#"
+    | otherwise                     = "."
 
 {-
 ....................#........G
