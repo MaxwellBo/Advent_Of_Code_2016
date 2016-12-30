@@ -1,5 +1,7 @@
 -- http://adventofcode.com/2016/day/9
 
+module Nine where
+
 import Data.List.Split
 import Control.Parallel.Strategies
 
