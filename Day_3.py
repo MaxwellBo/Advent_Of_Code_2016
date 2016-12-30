@@ -10,13 +10,13 @@ def main(part):
 	with open("inputs/Day_3_input.txt") as fp:
 	    
 	    if part == 1:
-	    	triangles = [ [ int(side) for side in line.split()] for line in fp ]
+	    	triangles = [ [ int(side) for side in line.split() ] for line in fp ]
 	    else:
-		    split_lines = [line.split() for line in fp]
+		    split_lines = [ line.split() for line in fp ]
 
 		    groups_of_three_lines = grouper(split_lines, 3, [])
 
-		    rotated_three_lines = [zip(*three_lines[::-1]) for three_lines in groups_of_three_lines ]
+		    rotated_three_lines = [ zip(*three_lines[::-1]) for three_lines in groups_of_three_lines ]
 		    
 		    triangles = [ [ int(side) for side in triangle ] for triangle in flatten(rotated_three_lines) ]
 
