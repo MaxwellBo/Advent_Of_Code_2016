@@ -45,3 +45,5 @@ def main(part):
 if __name__ == '__main__':
     main(1) # a: 318020
     main(2) # a: 9227674
+
+x = 5

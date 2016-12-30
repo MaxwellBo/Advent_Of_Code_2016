@@ -24,7 +24,6 @@ partOne = until (\x -> (7, 4) `elem` positions x) (>>= move) init
     positions = fst . runWriter . runListT
     moves = getSum . execWriter . runListT
 
-
 move :: Position -> Stack
 move (x, y) = do
   lift . tell $ (Sum 1)
