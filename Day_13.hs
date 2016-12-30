@@ -15,7 +15,7 @@ main = do
 partOne :: Int
 partOne = length . takeWhile (\x -> not $ ((31, 39) `elem` x)) $ search 
   where
-    search = iterate (nub . concatMap move) [(1, 1)]
+    search = iterate (nub . move =<<) [(1, 1)]
 
 move :: Position -> [Position]
 move (x, y) = filter (isOpen) $ [(x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)]
