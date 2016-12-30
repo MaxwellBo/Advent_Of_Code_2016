@@ -10,7 +10,8 @@ import Data.Char
 import qualified Data.Map as Map
 
 data Room = Room
-  { letters :: String
+  { name :: String
+  , letters :: String
   , sectorID :: Integer
   , checksum :: String
   }
@@ -19,7 +20,7 @@ main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_4_input.txt"
   print . partOne $ fileContents -- 173787
-  putStrLn . partTwo $ fileContents
+  putStrLn . partTwo $ fileContents -- ("northpolecobjectcstorageckjnwoetrcy", 548)
 
 partOne :: String -> Integer 
 partOne = sum
@@ -28,7 +29,8 @@ partOne = sum
 
 partTwo :: String -> String
 partTwo = unlines
-        . fmap letters
+        . fmap show 
+        . fmap (\x -> (name x, sectorID x))
         . fmap shift
         . getRealRooms
 
@@ -40,6 +42,7 @@ getRealRooms = filter isRealRoom
 readRoom :: String -> Room
 readRoom string = Room {..}
   where 
+    name = string
     reversed = reverse string
     tokens = filter (not . null) $ splitOneOf "-[]" reversed
     checksum = reverse $ (tokens !! 0)
@@ -47,7 +50,7 @@ readRoom string = Room {..}
     letters = concat $ drop 2 tokens
 
 shift :: Room -> Room
-shift Room {..} = Room { letters = (map (shiftChar sectorID)) $ letters, .. }
+shift Room {..} = Room { name = (map (shiftChar sectorID)) $ name, .. }
 
 shiftChar :: Integer -> Char -> Char
 shiftChar offset =  castOut . rotate . castIn
