@@ -3,7 +3,7 @@
 #### Setup
 
 `cabal sandbox init`
-`cabal install containers split mtl`
+`cabal install containers split mtl parallel`
 
 #### Execution
 

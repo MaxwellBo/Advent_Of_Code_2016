@@ -1,18 +1,28 @@
 -- http://adventofcode.com/2016/day/9
 
 import Data.List.Split
+import Control.Parallel.Strategies
 
 main :: IO ()
 main = do 
   fileContents <- readFile "inputs/Day_9_input.txt"
-  print . partOne $ fileContents -- 115118
+  print . partBoth $ fileContents 
+  -- Part One: 115118
+  -- Part Two: 11107527530
+  -- ^ took about 10 minutes, compiled with -O3 -threaded -rtsopts
+  -- and executed with +RTS -N4 
 
-partOne :: String -> Int
-partOne = sum . fmap dc . lines 
+partBoth :: String -> Int
+partBoth = sum . fmap dc . lines 
 
--- For Part Two, change "length" to "dc"
+-- For Part Two, change "length" to "dc" in the 'l' evaluation
 dc :: String -> Int
-dc ('(':xs) = length (duplicate repeats $ (take chars xs')) + dc (drop chars xs')
+dc ('(':xs) = runEval $ do
+    l <- rpar $ length (duplicate repeats $ (take chars xs'))  
+    r <- rpar $ dc (drop chars xs')
+    rseq l
+    rseq r
+    return (l + r)
   where 
     marker = fst . (break (==')')) $ xs
     xs' = tail . snd . (break (==')')) $ xs
