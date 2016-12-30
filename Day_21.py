@@ -1,3 +1,5 @@
+# http://adventofcode.com/2016/day/21
+
 def swap_pos(x, y, l):
 	l = l[:]
 	l[x], l[y] = l[y], l[x]
