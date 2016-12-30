@@ -10,12 +10,17 @@ seed = 1350
 
 main :: IO ()
 main = do 
-  print partOne
+  print partOne -- 92
+  print partTwo -- 124
 
 partOne :: Int
-partOne = length . takeWhile (\x -> not $ ((31, 39) `elem` x)) $ search 
-  where
-    search = iterate (nub . move =<<) [(1, 1)]
+partOne = length . takeWhile (\x -> not $ ((31, 39) `elem` x)) $ frontier 
+
+partTwo :: Int
+partTwo = length . nub . concat . (take 51) $ frontier
+
+frontier :: [[Position]]
+frontier = iterate (nub . (move =<<)) [(1,1)]
 
 move :: Position -> [Position]
 move (x, y) = filter (isOpen) $ [(x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y)]
