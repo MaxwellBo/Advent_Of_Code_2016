@@ -22,7 +22,7 @@ instance Show Node where
     | otherwise = "."
 {-
 ....................#........G
-....................#.........
+....................#........X
 ....................#.........
 ....................#.........
 ....................#.........
@@ -52,8 +52,21 @@ instance Show Node where
 ..............................
 ..............................
 ..............................
-..............................
+.............................Y
 .............................O
+-}
+
+{-- 
+To get the _ to position X, it takes 49 shifts. 
+
+To move the G down one node towards the O, it takes 5 shifts in total, 
+1 to swap G forward, and 4 to return the _ to infront of the G.
+
+To get G to position Y, there are ((31 * 5) == 155) shifts.
+
+It takes 1 further shift to swap G onto O.
+
+Therefore, the total number of shifts is (49 + (31 * 5) + 1) == 205
 -}
 
 main :: IO ()
