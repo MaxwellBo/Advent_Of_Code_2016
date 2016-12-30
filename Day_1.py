@@ -18,7 +18,6 @@ class Person(object):
 		self.x += directions[self.direction][0]
 		self.y += directions[self.direction][1]
 
-
 	def walk(self, blocks):
 		for i in range(0, blocks):
 			self.step()
@@ -31,7 +30,6 @@ class Person(object):
 def main():
 
 	p = Person()
-	crumbs = []
 
 	with open("inputs/Day_1_input.txt") as fp:
 		for i in next(fp).split(", "):
