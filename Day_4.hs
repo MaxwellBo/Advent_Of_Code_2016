@@ -2,8 +2,6 @@
 
 {-# LANGUAGE RecordWildCards #-}
 
-import Data.Function ((&))
-
 import Data.List.Split
 import Data.List
 import Data.Ord
@@ -24,20 +22,20 @@ main = do
   putStrLn . partTwo $ fileContents
 
 partOne :: String -> Integer 
-partOne fileContents = getRealRooms fileContents 
-                     & fmap sectorID
-                     & sum
+partOne = sum
+        . fmap sectorID
+        . getRealRooms
 
 partTwo :: String -> String
-partTwo fileContents = getRealRooms fileContents
-                     & fmap shift
-                     & fmap letters
-                     & unlines
+partTwo = unlines
+        . fmap letters
+        . fmap shift
+        . getRealRooms
 
 getRealRooms :: String -> [Room]
-getRealRooms fileContents = lines fileContents
-                          & fmap readRoom
-                          & filter isRealRoom
+getRealRooms = filter isRealRoom
+             . fmap readRoom
+             . lines
 
 readRoom :: String -> Room
 readRoom string = Room {..}
