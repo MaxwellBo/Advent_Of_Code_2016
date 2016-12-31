@@ -1,5 +1,8 @@
 # IMPORTANT: Must be run with Python 2.7
 
+# I made this because I wanted to see if I could abuse eval and exec.
+# I could. It's just really really slow.
+
 # http://adventofcode.com/2016/day/12
 # http://adventofcode.com/2016/day/23
 # http://adventofcode.com/2016/day/25
@@ -60,7 +63,7 @@ if __name__ == '__main__':
     main(12) # a: 318020
     main(12, c_p=1) # a: 9227674
     main(23, a_p=7) # a: 11683
-    main(23, a=12) # a: 479008243
+    main(23, a_p=12) # a: 479008243
     
     for i in range(1, 100000):
         main(25, a_p=i) # 158

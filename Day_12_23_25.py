@@ -77,5 +77,5 @@ if __name__ == '__main__':
     # main(23, a_p=12) # a: 479008243
 
     for i in range(1, 100000):
-        main(25, a_p=i)
+        main(25, a_p=i) # 158
 
