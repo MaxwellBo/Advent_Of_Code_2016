@@ -17,14 +17,6 @@ function rotate_row(row, by)
     screen[row + 1, :] = ror!(screen[row + 1, :], by)
 end
 
-function part_two(file)
-    screen = falses(HEIGHT, WIDTH)
-
-    for ln in eachline(file)
-        print(ln)
-    end
-end
-
 open("inputs/Day_8_input.txt") do file
     for ln in eachline(file)
 
