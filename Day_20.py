@@ -1,4 +1,5 @@
-from itertools_recipes import *
+# http://adventofcode.com/2016/day/19
+
 from itertools import *
 
 class Range(object):
@@ -9,9 +10,6 @@ class Range(object):
 
     def __contains__(self, item):
         return self.lower - 1 <= item <= self.upper + 1
-
-    def __repr__(self):
-        return f"Range({self.lower}, {self.upper})"
 
 def merge(a, b):
     if a.alive and b.alive:
@@ -28,27 +26,33 @@ def merge(a, b):
             b.upper = a.upper
             a.alive = False
 
-
 def main():
     with open("inputs/Day_20_input.txt") as fp:
-        disallowed = []
-        
+
+        ranges = []
         for line in fp:
             lower, upper = line.split('-')
-            disallowed.append(Range(int(lower), int(upper)))
+            ranges.append(Range(int(lower), int(upper)))
 
+        # Needs at least 3 iterations to cull all overlaps
+        for i in range(1, 5):
+            print(len(ranges))
 
-        for i in range(1, 20):
-            print(len(disallowed))
-
-            for a, b in combinations(disallowed, 2):
+            for a, b in combinations(ranges, 2):
                 merge(a, b)
 
-            disallowed = [ i for i in disallowed if i.alive ]
+            ranges = [ i for i in ranges if i.alive ]
 
-        disallowed.sort(key=lambda x: x.lower)
+        ranges.sort(key=lambda x: x.lower)
 
-        print(disallowed[0].upper + 1) # Part One: 22887907
+        # Part One: 22887907
+        print(ranges[0].upper + 1) 
+
+        # Part Two: 109
+        p2 = sum(ranges[i + 1].lower - ranges[i].upper - 1\
+                 for i in range(len(ranges) - 1))
+
+        print(p2)
 
 if __name__ == '__main__':
-    main() # 22887906
+    main()
