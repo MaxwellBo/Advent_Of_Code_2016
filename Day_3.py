@@ -22,8 +22,8 @@ def main(part):
 
 	    possible = sum(is_possible(triangle) for triangle in triangles) 
 
-	    print(possible) # P1: 1032, P2: 1838
+	    print(possible)
 
 if __name__ == '__main__':
-	main(1)
-	main(2)
+	main(1) # 1032
+	main(2) # 1838

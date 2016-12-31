@@ -76,7 +76,7 @@ main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_22_input.txt"
   print . partOne $ fileContents -- 967
-  putStrLn . partTwo $ fileContents
+  putStrLn . partTwo $ fileContents -- see map above
 
 partOne :: String -> Int
 partOne = length . viablePairs . parseNodes
