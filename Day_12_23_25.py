@@ -2,7 +2,7 @@
 # http://adventofcode.com/2016/day/23
 # http://adventofcode.com/2016/day/25
 
-def main(day, a=0, c=0):
+def main(day, a_p=0, c_p=0):
     with open("inputs/Day_{}_input.txt".format(day)) as fp:
 
         # Parse input
@@ -10,17 +10,14 @@ def main(day, a=0, c=0):
 
         # Build computer
         pc = 0
-        out = 0
-        registers = { "a": a
+        clock = [1]
+        registers = { "a": a_p
                     , "b": 0
-                    , "c": c
+                    , "c": c_p
                     , "d": 0
                     }
 
-        # I don't trust Python to optimize this away
-        len_program = len(program)
-        # Run program
-        while pc < len_program:
+        while pc < len(program):
             ins = program[pc]
 
             if ins[0] == "cpy":
@@ -46,7 +43,7 @@ def main(day, a=0, c=0):
             elif ins[0] == "tgl":
                 i = pc + registers[ins[1]]
                 
-                if i < len_program: 
+                if i < len(program): 
                     if len(program[i]) == 2:
                         if program[i][0] == "inc":
                             program[i][0] = "dec"
@@ -58,15 +55,27 @@ def main(day, a=0, c=0):
                         else:
                             program[i][0] = "jnz"
 
+            elif ins[0] == "out":
+                clock.append(registers[ins[1]])
+
+                if (not (clock[-1] == 0 or clock[-1] == 1)):
+                    return
+                elif clock[-1] == clock[-2]:
+                    return
+                elif len(clock) > 50:
+                    print(a_p)
+                    exit()
 
             pc += 1
         else:
-            print(registers) # P1 
-
-
+            print(registers)
+            
 if __name__ == '__main__':
-    main(12) # a: 318020
-    main(12, c=1) # a: 9227674
-    main(23, a=7) # a: 11683
-    main(23, a=12) # a: 479008243
+    # main(12) # a: 318020
+    # main(12, c_p=1) # a: 9227674
+    # main(23, a_p=7) # a: 11683
+    # main(23, a_p=12) # a: 479008243
+
+    for i in range(1, 100000):
+        main(25, a_p=i)
 
