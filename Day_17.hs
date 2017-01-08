@@ -18,29 +18,22 @@ seed = "qljzarfv"
 main :: IO ()
 main = do 
   print partOne -- DRLRDDURDR
+  print partTwo
 
 partOne :: Path
-partOne = C.drop (C.length seed)
-        . head
-        . fmap snd
-        . filter (isDoor)
-        . until (any isDoor) (neighbors =<<)
-        $ [((0, 0), seed)]
-  where
-    isDoor = (==) (3, 3) . fst
+partOne = C.drop (C.length seed) . head $ paths
 
 partTwo :: Path
-partTwo = C.drop (C.length seed)
-        . head
-        . fmap snd
-        . filter (isDoor)
-        . until (all isDoor) (neighbors =<<)
-        $ [((0, 0), seed)]
+partTwo = C.drop (C.length seed) . last $ paths
+
+paths :: [Path]
+paths = sortBy (comparing C.length)
+      . fmap snd
+      . filter (isDoor)
+      . until (all isDoor) (neighbors =<<)
+      $ [((0, 0), seed)]
   where
     isDoor = (==) (3, 3) . fst
-
-bfs :: [Position] -> [[Position]]
-bfs = iterate (nub . (neighbors =<<)) 
 
 neighbors :: Position -> [Position]
 neighbors pos@((3, 3), p) = [pos]
