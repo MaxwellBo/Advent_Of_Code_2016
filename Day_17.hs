@@ -18,13 +18,13 @@ seed = "qljzarfv"
 main :: IO ()
 main = do 
   print partOne -- DRLRDDURDR
-  print partTwo
+  print partTwo -- 500
 
 partOne :: Path
 partOne = C.drop (C.length seed) . head $ paths
 
-partTwo :: Path
-partTwo = C.drop (C.length seed) . last $ paths
+partTwo :: Int
+partTwo = length . C.unpack . C.drop (C.length seed) . last $ paths
 
 paths :: [Path]
 paths = sortBy (comparing C.length)
