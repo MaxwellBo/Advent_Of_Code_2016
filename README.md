@@ -3,7 +3,7 @@
 #### Setup
 
 - `cabal sandbox init`
-- `cabal install containers split mtl parallel`
+- `cabal install containers split mtl parallel cryptohash puremd5`
 
 #### Execution
 
