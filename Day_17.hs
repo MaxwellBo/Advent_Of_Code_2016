@@ -43,11 +43,6 @@ neighbors ((x, y), p) = filterAccessible p $  [ ((x, y - 1), p <> "U")
                                               , ((x + 1, y), p <> "R")
                                               ]
 
-isInBounds :: Position -> Bool
-isInBounds ((x, y), _)
-  | x < 0 || y < 0 || x > 3 || y > 3 = False
-  | otherwise = True
-
 filterAccessible :: Path -> [Position] -> [Position]
 filterAccessible p xs = (filter isInBounds) 
                       . (fmap snd) 
@@ -55,3 +50,6 @@ filterAccessible p xs = (filter isInBounds)
   where
     isOpen (door, _) = door `elem` ['b'..'f']
     hash = show . md5
+    isInBounds ((x, y), _)
+      | x < 0 || y < 0 || x > 3 || y > 3 = False
+      | otherwise = True
