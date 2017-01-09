@@ -46,7 +46,8 @@ neighbors ((x, y), p) = filterAccessible p $  [ ((x, y - 1), p <> "U")
 filterAccessible :: Path -> [Position] -> [Position]
 filterAccessible p xs = (filter isInBounds) 
                       . (fmap snd) 
-                      . (filter isOpen) $ (zipWith (,) (hash p) xs) 
+                      . (filter isOpen) 
+                      $ (zipWith (,) (hash p) xs) 
   where
     hash = show . md5
     isOpen (door, _) = door `elem` ['b'..'f']

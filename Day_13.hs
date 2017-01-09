@@ -14,7 +14,7 @@ main = do
   print partTwo -- 124
 
 partOne :: Int
-partOne = length . takeWhile (not . elem (31, 39)) $ frontier 
+partOne = length . takeWhile (\x -> not $ ((31, 39) `elem` x)) $ frontier 
 
 partTwo :: Int
 partTwo = length . nub . concat . (take 51) $ frontier
