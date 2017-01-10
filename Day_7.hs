@@ -24,7 +24,7 @@ nonEmptySubstrings :: [a] -> [[a]]
 nonEmptySubstrings = concatMap (tail . inits) . tails
 
 candidatePalindromes :: String -> [String]
-candidatePalindromes = (filter (\x -> (length x) == 4)) . nonEmptySubstrings
+candidatePalindromes = (filter ((4 ==) . length)) . nonEmptySubstrings
 
 isPalindrome :: String -> Bool
 isPalindrome string = ((reverse string) == string) 

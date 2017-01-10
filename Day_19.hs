@@ -10,10 +10,10 @@ main = do
   print partTwo -- 1417887
 
 partOne :: Elfs
-partOne = until (\x -> S.length x == 1) (rotate . popNext) elfs
+partOne = until ((1==) . S.length) (rotate . popNext) elfs
 
 partTwo :: Elfs
-partTwo = until (\x -> S.length x == 1) (rotate . popOpposite) elfs
+partTwo = until ((1==) . S.length) (rotate . popOpposite) elfs
 
 elfs :: Elfs
 elfs = S.fromList [1..3012210]
