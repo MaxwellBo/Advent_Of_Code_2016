@@ -1,8 +1,10 @@
+# http://adventofcode.com/2016/day/24
+
 import networkx as nx
 import numpy as np
 from itertools import *
 
-def main():
+def main(part):
 
     with open("inputs/Day_24_input.txt") as fp:
     # with open("sample.txt") as fp:
@@ -36,7 +38,7 @@ def main():
                 weight = nx.astar_path_length(g, start_pos, finish_pos)
                 adjacency[start_name][finish_name] = weight
 
-        # ------ Build datastructures ----- #
+        # ------ Solve ----- #
         
         paths = [ (0, *i) for i in permutations(range(1, pois)) ]
 
@@ -46,6 +48,7 @@ def main():
         print(min(map(length, paths)))
 
 if __name__ == '__main__':
-    main()
+    main(part=1) # 490
+    main(part=2)
 
 

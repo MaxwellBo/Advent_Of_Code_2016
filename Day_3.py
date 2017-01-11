@@ -25,5 +25,5 @@ def main(part):
 	    print(possible)
 
 if __name__ == '__main__':
-	main(1) # 1032
-	main(2) # 1838
+	main(part=1) # 1032
+	main(part=2) # 1838

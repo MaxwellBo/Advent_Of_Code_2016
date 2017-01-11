@@ -71,10 +71,10 @@ def main(day, a_p=0, c_p=0):
             print(registers)
             
 if __name__ == '__main__':
-    # main(12) # a: 318020
-    # main(12, c_p=1) # a: 9227674
-    # main(23, a_p=7) # a: 11683
-    # main(23, a_p=12) # a: 479008243
+    main(day=12) # a: 318020
+    main(day=12, c_p=1) # a: 9227674
+    main(day=23, a_p=7) # a: 11683
+    main(day=23, a_p=12) # a: 479008243
 
     for i in range(1, 100000):
         main(25, a_p=i) # 158

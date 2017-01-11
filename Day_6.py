@@ -16,5 +16,5 @@ def main(part):
         print(error_corrected)
 
 if __name__ == '__main__':
-    main(1) # kjxfwkdh
-    main(2) # xrwcsnps
+    main(part=1) # kjxfwkdh
+    main(part=2) # xrwcsnps
