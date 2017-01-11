@@ -40,7 +40,10 @@ def main(part):
 
         # ------ Solve ----- #
         
-        paths = [ (0, *i) for i in permutations(range(1, pois)) ]
+        if part == 1:
+            paths = [ (0, *i) for i in permutations(range(1, pois)) ]
+        else:
+            paths = [ (0, *i, 0) for i in permutations(range(1, pois)) ]
 
         def length(xs):
             return sum(adjacency[xs[i]][xs[i + 1]] for i in range(len(xs) - 1))
