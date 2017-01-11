@@ -3,10 +3,6 @@
 import hashlib
 import collections
 
-def printi(xs):
-    for i in xs:
-        print(i)
-
 def hash_(index):
     word = ("abc{}".format(index)).encode('utf-8')
 
@@ -34,6 +30,7 @@ def main():
 
         if keys == 64:
             print(index)
+            return
 
         # Generate the 1001st hash
         queue.append(hash_(index + frame))
