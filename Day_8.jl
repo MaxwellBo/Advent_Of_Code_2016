@@ -17,43 +17,48 @@ function rotate_row(row, by)
     screen[row + 1, :] = ror!(screen[row + 1, :], by)
 end
 
-open("inputs/Day_8_input.txt") do file
-    for ln in eachline(file)
+function main()
+    open("inputs/Day_8_input.txt") do file
+        for ln in eachline(file)
 
-        tok = split(ln)
+            tok = split(ln)
 
-        if tok[1] == "rect" 
-            args = split(tok[2], "x")
-            rect(map(x -> parse(Int, x), args)...)
-        elseif tok[2] == "row"
-            args = [ tok[3][3:end], tok[5] ]
-            rotate_row(map(x -> parse(Int, x), args)...)
-        elseif tok[2] == "column"
-            args = [ tok[3][3:end], tok[5] ]
-            rotate_col(map(x -> parse(Int, x), args)...)
-        end
+            if tok[1] == "rect" 
+                args = split(tok[2], "x")
+                rect(map(x -> parse(Int, x), args)...)
+            elseif tok[2] == "row"
+                args = [ tok[3][3:end], tok[5] ]
+                rotate_row(map(x -> parse(Int, x), args)...)
+            elseif tok[2] == "column"
+                args = [ tok[3][3:end], tok[5] ]
+                rotate_col(map(x -> parse(Int, x), args)...)
+            end
 
-    end
-end
-
-# Part One
-println(sum(screen)) # 123
-
-# Part Two
-for i in 1:size(screen, 1)
-    for j in screen[i, :]
-        if j == true
-            print('#')
-        else
-            print(' ')
         end
     end
-    println(' ')
+
+    # Part One
+    println(sum(screen)) # 123
+
+    # Part Two
+    for i in 1:size(screen, 1)
+        for j in screen[i, :]
+            if j == true
+                print('#')
+            else
+                print(' ')
+            end
+        end
+        println(' ')
+    end
+
+     ##  #### ###  #  # ###  #### ###    ## ###   ###
+    #  # #    #  # #  # #  #    # #  #    # #  # #
+    #  # ###  ###  #  # #  #   #  ###     # #  # #
+    #### #    #  # #  # ###   #   #  #    # ###   ##
+    #  # #    #  # #  # #    #    #  # #  # #       #
+    #  # #    ###   ##  #    #### ###   ##  #    ###
+
 end
 
- ##  #### ###  #  # ###  #### ###    ## ###   ###
-#  # #    #  # #  # #  #    # #  #    # #  # #
-#  # ###  ###  #  # #  #   #  ###     # #  # #
-#### #    #  # #  # ###   #   #  #    # ###   ##
-#  # #    #  # #  # #    #    #  # #  # #       #
-#  # #    ###   ##  #    #### ###   ##  #    ###
+main()
