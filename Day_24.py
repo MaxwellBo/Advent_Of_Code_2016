@@ -3,8 +3,8 @@ from itertools import *
 
 def main():
 
-    # with open("inputs/Day_24_input.txt") as fp:
-    with open("sample.txt") as fp:
+    with open("inputs/Day_24_input.txt") as fp:
+    # with open("sample.txt") as fp:
         m = [ i.strip() for i in fp ]
 
         rows = len(m)
@@ -39,10 +39,12 @@ def main():
 
         # print(nx.single_source_dijkstra_path_length(h, '0'))
 
+        all_pois = {i for i in range(1, len(pois_to_node))}
+
         def is_hamiltonian_path(xs):
             starts_at_zero = xs[0][0] == 0
             valid = all(xs[i][1] == xs[i + 1][0] for i in range(len(xs) - 1))
-            path = {i[1] for i in xs} == {i for i in range(1, len(xs) + 1)}
+            path = {i[1] for i in xs} == all_pois
             return starts_at_zero and valid and path
 
         def length(xs):
