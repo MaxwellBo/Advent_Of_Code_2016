@@ -61,11 +61,9 @@ function main()
 
     h = CompleteGraph(pois)
     
-    display(distances)
+    print(dijkstra_shortest_paths(h, 1, distances).dists)
 
-    print(dijkstra_shortest_paths(h, 1, distances).pathcounts)
-
-
+    # At this point I gave up. See Day_24.py for an actual completed solution
 end
 
 main()

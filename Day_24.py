@@ -1,10 +1,14 @@
 import networkx as nx
+import numpy as np
 from itertools import *
 
 def main():
 
     with open("inputs/Day_24_input.txt") as fp:
     # with open("sample.txt") as fp:
+
+        # ------ Read the input ----- #
+
         m = [ i.strip() for i in fp ]
 
         rows = len(m)
@@ -20,46 +24,26 @@ def main():
                 elif m[y][x].isdigit():
                     pois_to_node[int(m[y][x])] = (x, y)
 
-        h = nx.Graph()
-        adjacency = []
+        # ------ Build datastructures ----- #
 
+        pois = len(pois_to_node)
+
+        adjacency = np.zeros((pois, pois))
 
         for (start_name, start_pos) in pois_to_node.items():
             for (finish_name, finish_pos) in pois_to_node.items():
 
                 weight = nx.astar_path_length(g, start_pos, finish_pos)
-                adjacency.append((start_name, finish_name, weight))
+                adjacency[start_name][finish_name] = weight
 
-        #         if start_name == finish_name:
-        #             continue
-
-        #         print(start_name, finish_name, weight)
-
-                # h.add_edge(start_name, finish_name, weight=weight) 
-
-        # print(nx.single_source_dijkstra_path_length(h, '0'))
-
-        all_pois = {i for i in range(1, len(pois_to_node))}
-
-        def is_hamiltonian_path(xs):
-            starts_at_zero = xs[0][0] == 0
-            valid = all(xs[i][1] == xs[i + 1][0] for i in range(len(xs) - 1))
-            path = {i[1] for i in xs} == all_pois
-            return starts_at_zero and valid and path
+        # ------ Build datastructures ----- #
+        
+        paths = [ (0, *i) for i in permutations(range(1, pois)) ]
 
         def length(xs):
-            return sum(i[2] for i in xs)
+            return sum(adjacency[xs[i]][xs[i + 1]] for i in range(len(xs) - 1))
 
-        perms = permutations(adjacency, len(pois_to_node) - 1)
-
-        valid_perms = filter(is_hamiltonian_path, perms)
-
-        lowest = 10000000000000000000000000
-        for i in valid_perms:
-            if length(i) < lowest:
-                lowest = length(i)
-
-        print(lowest)
+        print(min(map(length, paths)))
 
 if __name__ == '__main__':
     main()
