@@ -7,7 +7,6 @@ from itertools import *
 def main(part):
 
     with open("inputs/Day_24_input.txt") as fp:
-    # with open("sample.txt") as fp:
 
         # ------ Read the input ----- #
 
@@ -34,12 +33,11 @@ def main(part):
 
         for (start_name, start_pos) in pois_to_node.items():
             for (finish_name, finish_pos) in pois_to_node.items():
-
                 weight = nx.astar_path_length(g, start_pos, finish_pos)
                 adjacency[start_name][finish_name] = weight
 
         # ------ Solve ----- #
-        
+
         if part == 1:
             paths = [ (0, *i) for i in permutations(range(1, pois)) ]
         else:
@@ -52,6 +50,4 @@ def main(part):
 
 if __name__ == '__main__':
     main(part=1) # 490
-    main(part=2)
-
-
+    main(part=2) # 744
