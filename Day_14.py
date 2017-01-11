@@ -33,11 +33,11 @@ def main(part):
     index = 0
 
     while True:
-        triplet_in_head = triplet(queue.popleft())
+        triplet_head = triplet(queue.popleft())
 
-        if triplet_in_head:
+        if triplet_head:
             for h in queue:
-                if triplet_in_head in quintuplets(h):
+                if triplet_head in quintuplets(h):
                     keys += 1
                     print(keys)
                     break
@@ -64,5 +64,5 @@ def quintuplets(xs):
     return (i[0] for i in substrings_of_length(5, xs) if i == 5 * i[0])
 
 if __name__ == '__main__':
-    # main(part=1) # 15168
-    main(part=2) 
+    main(part=1) # 15168
+    main(part=2) # 20864
