@@ -1,3 +1,13 @@
+## Requirements
+
+- Julia
+- Python 2
+- Python 3
+- Haskell
+    + Cabal
+
+## Usage
+
 ### Haskell
 
 #### Setup
@@ -10,6 +20,18 @@
 - `cabal repl`
 - `> :l <DAY>`
 - `> main`
+
+### Python
+
+#### Setup
+
+- `python3 -m venv .`
+- `pip3 install networkx`
+- `source bin/activate`
+
+#### Execution
+
+- `python3 <DAY>`
 
 ### Scala
 
