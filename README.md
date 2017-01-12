@@ -13,7 +13,7 @@
 #### Setup
 
 - `cabal sandbox init`
-- `cabal install containers split mtl parallel cryptohash puremd5`
+- `cabal install containers split mtl parallel puremd5`
 
 #### Execution
 
@@ -26,7 +26,7 @@
 #### Setup
 
 - `python3 -m venv .`
-- `pip3 install networkx`
+- `pip3 install networkx numpy more_itertools`
 - `source bin/activate`
 
 #### Execution

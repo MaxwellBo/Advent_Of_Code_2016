@@ -21,6 +21,19 @@ def hash_2017(index):
 
     return x
 
+def substrings_of_length(n, xs):
+    return (xs[i:n + i] for i in range(len(xs) + 1 - n))
+
+def triplet(xs):
+    for i in substrings_of_length(3, xs):
+        if i == 3 * i[0]:
+            return i[0]
+    else:
+        return None
+
+def quintuplets(xs):
+    return (i[0] for i in substrings_of_length(5, xs) if i == 5 * i[0])
+    
 def main(part):
 
     hash_ = hash_1 if part == 1 else hash_2017
@@ -50,18 +63,6 @@ def main(part):
         queue.append(hash_(index + frame))
         index += 1
 
-def substrings_of_length(n, xs):
-    return (xs[i:n + i] for i in range(len(xs) + 1 - n))
-
-def triplet(xs):
-    for i in substrings_of_length(3, xs):
-        if i == 3 * i[0]:
-            return i[0]
-    else:
-        return None
-
-def quintuplets(xs):
-    return (i[0] for i in substrings_of_length(5, xs) if i == 5 * i[0])
 
 if __name__ == '__main__':
     main(part=1) # 15168
