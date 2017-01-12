@@ -55,5 +55,5 @@ if __name__ == "__main__":
 
             record_digit()
 
-    print("Part Two", code) # C2C28
+    print("Part 2:", code) # C2C28
     

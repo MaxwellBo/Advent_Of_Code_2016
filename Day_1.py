@@ -24,7 +24,7 @@ class Person(object):
 			self.step()
 
 			if (self.x, self.y) in self.locations and not self.squelch:
-				print("Part Two:", abs(self.x) + abs(self.y)) # 150
+				print("Part 2:", abs(self.x) + abs(self.y)) # 150
 				self.squelch = True
 			else:
 				self.locations.add((self.x, self.y))
@@ -38,7 +38,7 @@ def main():
 			p.turn(i[0])
 			p.walk(int(i[1:]))
 
-	print("Part One:", abs(p.x) + abs(p.y)) # 242
+	print("Part 1:", abs(p.x) + abs(p.y)) # 242
 
 if __name__ == '__main__':
 	main()

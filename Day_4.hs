@@ -22,15 +22,15 @@ main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_4_input.txt"
   print . partOne $ fileContents -- 173787
-  putStrLn . partTwo $ fileContents -- ("northpolecobjectcstorageckjnwoetrcy", 548)
+  print . partTwo $ fileContents -- 548
 
 partOne :: String -> Integer 
 partOne = sum
         . fmap sectorID
         . getRealRooms
 
-partTwo :: String -> String
-partTwo = show
+partTwo :: String -> Integer
+partTwo = head
         . fmap snd
         . filter (\(x, _) -> "northpolecobject" `isPrefixOf` x)
         . fmap (\x -> (name x, sectorID x))

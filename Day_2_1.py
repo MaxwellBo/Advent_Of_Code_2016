@@ -46,5 +46,5 @@ if __name__ == "__main__":
 
             record_digit()
 
-    print("Part One:", code) # 61529
+    print("Part 1:", code) # 61529
     
