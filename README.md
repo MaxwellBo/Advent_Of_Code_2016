@@ -6,6 +6,12 @@
 - Haskell
     + Cabal
 
+## Setup
+
+- `python3 -m venv .`
+- `pip3 install networkx numpy more_itertools`
+- `source bin/activate`
+
 ## Usage
 
 ### Haskell
@@ -25,9 +31,6 @@
 
 #### Setup
 
-- `python3 -m venv .`
-- `pip3 install networkx numpy more_itertools`
-- `source bin/activate`
 
 #### Execution
 
