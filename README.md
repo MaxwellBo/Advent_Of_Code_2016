@@ -10,6 +10,8 @@
 - `python3 -m venv .`
 - `source bin/activate`
 - `pip3 install networkx numpy more_itertools`
+- `cabal sandbox init`
+- `cabal install`
 
 ## Usage
 
