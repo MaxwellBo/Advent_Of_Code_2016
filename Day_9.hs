@@ -1,7 +1,5 @@
 -- http://adventofcode.com/2016/day/9
 
-{-# OPTIONS_GHC -O3 -threaded -with-rtsopts="-N4" #-}
-
 module Day_9 where
 
 import Data.List.Split

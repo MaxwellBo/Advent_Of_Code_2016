@@ -1,8 +1,8 @@
 -- http://adventofcode.com/2016/day/4
 
-module Day_4 where
-
 {-# LANGUAGE RecordWildCards #-}
+
+module Day_4 where
 
 import Data.List.Split
 import Data.List
