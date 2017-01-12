@@ -1,5 +1,7 @@
 -- http://adventofcode.com/2016/day/9
 
+{-# OPTIONS_GHC -O3 -threaded -with-rtsopts="-N4" #-}
+
 module Nine where
 
 import Data.List.Split
@@ -11,8 +13,6 @@ main = do
   print . partBoth $ fileContents 
   -- Part One: 115118
   -- Part Two: 11107527530
-  -- ^ took about 10 minutes, compiled with -O3 -threaded -rtsopts
-  -- and executed with +RTS -N4 
 
 partBoth :: String -> Int
 partBoth = sum . fmap dc . lines 
