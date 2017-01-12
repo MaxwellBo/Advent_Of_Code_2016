@@ -46,7 +46,7 @@ def main(part):
         def length(xs):
             return sum(adjacency[xs[i]][xs[i + 1]] for i in range(len(xs) - 1))
 
-        print(min(map(length, paths)))
+        print(f"Part {part}:", min(map(length, paths)))
 
 if __name__ == '__main__':
     main(part=1) # 490
