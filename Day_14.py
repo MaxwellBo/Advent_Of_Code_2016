@@ -23,7 +23,7 @@ def hash_2017(index):
 
 def main(part):
 
-    hash_ = hash_1 if part ==1 else hash_2017
+    hash_ = hash_1 if part == 1 else hash_2017
 
     frame = 1001
     # Generates the head, and 1000 other hashes
