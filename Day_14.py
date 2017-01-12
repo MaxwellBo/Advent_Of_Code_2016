@@ -52,11 +52,10 @@ def main(part):
             for h in queue:
                 if triplet_head in quintuplets(h):
                     keys += 1
-                    print(keys)
                     break
 
         if keys == 64:
-            print(index)
+            print(f"Part {part}:", index)
             return
 
         # Generate the 1001st hash

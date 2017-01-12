@@ -21,8 +21,8 @@ data Room = Room
 main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_4_input.txt"
-  print . partOne $ fileContents -- 173787
-  print . partTwo $ fileContents -- 548
+  print ("Part 1", partOne fileContents) -- 173787
+  print ("Part 2", partTwo fileContents) -- 548
 
 partOne :: String -> Integer 
 partOne = sum

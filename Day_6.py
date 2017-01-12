@@ -13,7 +13,7 @@ def main(part):
         #                                                       v
         error_corrected = "".join(Counter(line).most_common()[index][0] for line in rotated_message)
 
-        print(error_corrected)
+        print(f"Part {part}:", error_corrected)
 
 if __name__ == '__main__':
     main(part=1) # kjxfwkdh

@@ -19,8 +19,8 @@ seed = "qljzarfv"
 
 main :: IO ()
 main = do
-  print partOne -- DRLRDDURDR
-  print partTwo -- 500
+  print ("Part 1", partOne) -- DRLRDDURDR
+  print ("Part 2", partTwo) -- 500
 
 partOne :: Path
 partOne = C.drop (C.length seed) . head $ paths

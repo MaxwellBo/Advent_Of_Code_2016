@@ -12,8 +12,8 @@ seed = 1350
 
 main :: IO ()
 main = do
-  print partOne -- 92
-  print partTwo -- 124
+  print ("Part 1", partOne) -- 92
+  print ("Part 2", partTwo) -- 124
 
 partOne :: Int
 partOne = length . takeWhile (\x -> not $ ((31, 39) `elem` x)) $ frontier 

@@ -37,10 +37,9 @@ function main()
         end
     end
 
-    # Part One
-    println(sum(screen)) # 123
+    println("Part 1: ", sum(screen)) # 123
 
-    # Part Two
+    println("Part 2:\n")
     for i in 1:size(screen, 1)
         for j in screen[i, :]
             if j == true

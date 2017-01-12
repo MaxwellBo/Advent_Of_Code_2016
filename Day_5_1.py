@@ -5,6 +5,7 @@ import hashlib
 def main():
 
     index = 0
+    answer = []
 
     while True:
 
@@ -15,7 +16,11 @@ def main():
         hash_result = m.hexdigest()
 
         if hash_result[0:5] == '00000':
-            print(hash_result[5])
+            answer.append(hash_result[5])
+
+            if len(answer) == 8:
+                print("Part 1:", "".join(answer))
+                exit()
 
         index += 1
 

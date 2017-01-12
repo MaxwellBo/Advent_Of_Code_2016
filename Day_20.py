@@ -36,8 +36,6 @@ def main():
 
         # Needs at least 3 iterations to cull all overlaps
         for i in range(1, 5):
-            print(len(ranges))
-
             for a, b in combinations(ranges, 2):
                 merge(a, b)
 
@@ -45,14 +43,13 @@ def main():
 
         ranges.sort(key=lambda x: x.lower)
 
-        # Part One: 22887907
-        print(ranges[0].upper + 1) 
+        
+        print("Part 1:", ranges[0].upper + 1) # 22887907
 
-        # Part Two: 109
         p2 = sum(ranges[i + 1].lower - ranges[i].upper - 1\
                  for i in range(len(ranges) - 1))
 
-        print(p2)
+        print("Part 2:", p2) # 109
 
 if __name__ == '__main__':
     main()

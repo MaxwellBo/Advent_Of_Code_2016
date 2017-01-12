@@ -77,7 +77,8 @@ Therefore, the total number of shifts is (49 + (31 * 5) + 1) == 205.
 main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_22_input.txt"
-  print . partOne $ fileContents -- 967
+  print ("Part 1", partOne fileContents) -- 967
+  print "Part 2"
   putStrLn . partTwo $ fileContents -- see map above
 
 partOne :: String -> Int

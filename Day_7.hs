@@ -10,7 +10,7 @@ import Data.List.Split
 main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_7_input.txt"
-  print . partOne $ fileContents -- 110
+  print ("Part 1", partOne fileContents) -- 110
 
 partOne :: String -> Int
 partOne = length . filter (== True) . (fmap supportsTLS) . lines

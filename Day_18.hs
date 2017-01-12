@@ -7,8 +7,8 @@ import Data.List
 
 main :: IO ()
 main = do
-  print partOne -- 1956
-  print partTwo -- 19995121
+  print ("Part 1", partOne) -- 1956
+  print ("Part 2", partTwo) -- 19995121
 
 seed :: String
 seed = ".^^^^^.^^^..^^^^^...^.^..^^^.^^....^.^...^^^...^^^^..^...^...^^.^.^...."

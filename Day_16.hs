@@ -4,8 +4,8 @@ module Day_16 where
 
 main :: IO ()
 main = do 
-  print partOne -- 10100011010101011
-  print partTwo -- 01010001101011001
+  print ("Part 1", partOne) -- 10100011010101011
+  print ("Part 2", partTwo) -- 01010001101011001
       
 seed :: String
 seed = "11100010111110100"
