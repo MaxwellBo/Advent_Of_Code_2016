@@ -4,6 +4,7 @@ class Person(object):
 		self.x = 0
 		self.y = 0
 		self.locations = set()
+		self.squelch = False
 
 	def turn(self, char):
 		self.direction += -1 if char == "L" else 1
@@ -22,8 +23,9 @@ class Person(object):
 		for i in range(0, blocks):
 			self.step()
 
-			if (self.x, self.y) in self.locations:
+			if (self.x, self.y) in self.locations and not self.squelch:
 				print("Part Two:", abs(self.x) + abs(self.y)) # 150
+				self.squelch = True
 			else:
 				self.locations.add((self.x, self.y))
 

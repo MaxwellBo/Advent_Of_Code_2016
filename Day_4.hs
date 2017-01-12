@@ -30,8 +30,9 @@ partOne = sum
         . getRealRooms
 
 partTwo :: String -> String
-partTwo = unlines
-        . fmap show 
+partTwo = show
+        . fmap snd
+        . filter (\(x, _) -> "northpolecobject" `isPrefixOf` x)
         . fmap (\x -> (name x, sectorID x))
         . fmap shift
         . getRealRooms
