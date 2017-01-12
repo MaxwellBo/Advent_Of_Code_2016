@@ -1,5 +1,7 @@
 -- http://adventofcode.com/2016/day/16
 
+module Day_16 where
+
 main :: IO ()
 main = do 
   print partOne -- 10100011010101011

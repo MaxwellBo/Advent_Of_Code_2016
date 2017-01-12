@@ -1,5 +1,7 @@
 -- http://adventofcode.com/2016/day/13
 
+module Day_13 where
+
 import Data.Bits
 import Data.List
 
@@ -9,7 +11,7 @@ seed :: Int
 seed = 1350
 
 main :: IO ()
-main = do 
+main = do
   print partOne -- 92
   print partTwo -- 124
 

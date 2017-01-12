@@ -1,5 +1,7 @@
 -- http://adventofcode.com/2016/day/19
 
+module Day_19 where
+
 import Data.Sequence as S
 
 type Elfs = S.Seq Int

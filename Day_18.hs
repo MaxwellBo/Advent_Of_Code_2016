@@ -1,10 +1,12 @@
 -- https://adventofcode.com/2016/day/18
 
+module Day_18 where
+
 import Data.List.Split
 import Data.List
 
 main :: IO ()
-main = do 
+main = do
   print partOne -- 1956
   print partTwo -- 19995121
 

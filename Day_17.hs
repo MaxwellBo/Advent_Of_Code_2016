@@ -2,6 +2,8 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
+module Day_17 where
+
 import Data.List
 import Data.Ord
 import Data.Digest.Pure.MD5 (md5)
@@ -16,7 +18,7 @@ seed :: Path
 seed = "qljzarfv"
 
 main :: IO ()
-main = do 
+main = do
   print partOne -- DRLRDDURDR
   print partTwo -- 500
 

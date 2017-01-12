@@ -1,5 +1,7 @@
 -- http://adventofcode.com/2016/day/7
 
+module Day_7 where
+
 import Data.Function ((&))
 
 import Data.List
