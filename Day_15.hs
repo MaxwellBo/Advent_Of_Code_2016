@@ -12,12 +12,16 @@ type Disc = (Position, Positions)
 main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_15_input.txt"
-  print ("Part 1", partOne fileContents) -- 148737
+  print ("Part 1", part 1 fileContents) -- 148737
+  print ("Part 2", part 2 fileContents) -- 2353212
 
-partOne :: String -> Int
-partOne = length . takeWhile (not.allClear) . iterate wait . parseDiscs
+part :: Int -> String -> Int
+part n = length . takeWhile (not.allClear) . iterate wait . parseDiscs
   where 
-    parseDiscs = compensate . (fmap parseDisc) . lines 
+    parseDiscs = compensate
+               . (++ (if n == 2 then [(0, 11)] else [])  )
+               . (fmap parseDisc) 
+               . lines 
 
 compensate :: [Disc] -> [Disc]
 compensate = zipWith (\y (a, b)-> (a + y, b)) [1..]
