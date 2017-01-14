@@ -2,6 +2,7 @@ import qualified Day_4
 import qualified Day_7
 import qualified Day_9
 import qualified Day_13
+import qualified Day_15
 import qualified Day_16
 import qualified Day_17
 import qualified Day_18
@@ -30,6 +31,7 @@ main = do
     system "python3 Day_12_23_25.py" >> n
     putStrLn "Day 13" >> Day_13.main >> n
     putStrLn "Day 14" >> system "python3 Day_14.py" >> n
+    putStrLn "Day 15" >> Day_15.main >> n
     putStrLn "Day 16" >> Day_16.main >> n
     putStrLn "Day 17" >> Day_17.main >> n
     putStrLn "Day 18" >> Day_18.main >> n
