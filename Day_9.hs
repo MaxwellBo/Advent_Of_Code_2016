@@ -8,14 +8,11 @@ import Control.Parallel.Strategies
 main :: IO ()
 main = do 
   fileContents <- readFile "inputs/Day_9_input.txt"
-  print ("Part 1", partOne fileContents) -- 115118
-  print ("Part 2", partTwo fileContents) -- 11107527530
+  print ("Part 1", part 1 fileContents) -- 115118
+  print ("Part 2", part 2 fileContents) -- 11107527530
 
-partOne :: String -> Int
-partOne = sum . fmap (dc 1) . lines
-
-partTwo :: String -> Int
-partTwo = sum . fmap (dc 2) . lines
+part :: Int -> String -> Int
+part n = sum . fmap (dc n) . lines
 
 -- This is unreadable, I sincerely apologize
 dc :: Int -> String -> Int
