@@ -19,12 +19,12 @@ elfs :: Elfs
 elfs = S.fromList [1..3012210]
 
 popOpposite :: Elfs -> Elfs
-popOpposite elfs = S.deleteAt index elfs
+popOpposite xs = S.deleteAt index xs
   where
-    index = S.length elfs `div` 2
+    index = S.length xs `div` 2
 
 popNext :: Elfs -> Elfs
 popNext = S.deleteAt 1
 
 rotate :: Elfs -> Elfs
-rotate elfs = S.drop 1 elfs >< S.take 1 elfs
+rotate xs = S.drop 1 xs >< S.take 1 xs
