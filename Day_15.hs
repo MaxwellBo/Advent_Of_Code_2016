@@ -30,9 +30,7 @@ wait :: [Disc] -> [Disc]
 wait = fmap.first $ (+1)
 
 allClear :: [Disc] -> Bool
-allClear = all isOpen
-  where
-    isOpen disc = (fst disc `mod` snd disc) == 0
+allClear = all (\(p, ps) -> (p `mod` ps) == 0)
 
 parseDisc :: String -> Disc
 parseDisc xs = (read $ tok !! 11, read $ tok !! 3)

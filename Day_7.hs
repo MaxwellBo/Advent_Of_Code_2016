@@ -16,9 +16,9 @@ partOne :: String -> Int
 partOne = length . filter (== True) . (fmap supportsTLS) . lines
 
 tokenize :: String -> ([String], [String])
-tokenize = (fst part, tail <$> snd part)
+tokenize xs = (fst part, tail <$> snd part)
   where 
-    tok = split (startsWith "[") 
+    tok = split (startsWith "[") xs 
         >>= split (dropDelims $ endsWith "]") 
     part = (partition (\x -> head x /= '[')) $ tok
 
