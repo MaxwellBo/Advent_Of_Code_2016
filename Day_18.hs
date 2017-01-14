@@ -7,17 +7,16 @@ import Data.List
 
 main :: IO ()
 main = do
-  print ("Part 1", partOne) -- 1956
-  print ("Part 2", partTwo) -- 19995121
+  print ("Part 1", part 1) -- 1956
+  print ("Part 2", part 2) -- 19995121
 
 seed :: String
 seed = ".^^^^^.^^^..^^^^^...^.^..^^^.^^....^.^...^^^...^^^^..^...^...^^.^.^...."
       ++ "...^..^^...^.^.^^..^^^^^...^."
 
-partOne :: Int
-partOne = length . filter (== '.') . concat $ makeRoom 40
-
-partTwo = length . filter (== '.') . concat $ makeRoom 400000
+part :: Int -> Int
+part n = length . filter (== '.') . concat $ makeRoom (if (n == 1) then 40 
+                                                                   else 400000)
 
 makeRoom :: Int -> [String]
 makeRoom lines = (take lines) $ (unfoldr deriveNextRow seed)

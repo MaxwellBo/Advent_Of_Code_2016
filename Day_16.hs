@@ -4,17 +4,15 @@ module Day_16 where
 
 main :: IO ()
 main = do 
-  print ("Part 1", partOne) -- 10100011010101011
-  print ("Part 2", partTwo) -- 01010001101011001
+  print ("Part 1", part 1) -- 10100011010101011
+  print ("Part 2", part 2) -- 01010001101011001
       
 seed :: String
 seed = "11100010111110100"
 
-partOne :: String
-partOne = checksum $ fillDisk 272 seed
-
-partTwo :: String 
-partTwo = checksum $ fillDisk 35651584 seed
+part :: Int -> String
+part n = checksum $ fillDisk (if n == 1 then 272 
+										else 35651584) seed
 
 process :: String -> String
 process a = a ++ "0" ++ b 
