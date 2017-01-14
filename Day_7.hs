@@ -16,11 +16,11 @@ partOne :: String -> Int
 partOne = length . filter (== True) . (fmap supportsTLS) . lines
 
 tokenize :: String -> ([String], [String])
-tokenize string = (fst part, tail <$> snd part)
+tokenize = (fst part, tail <$> snd part)
   where 
-    tokens = split (startsWith "[") string 
+    tok = split (startsWith "[") 
         >>= split (dropDelims $ endsWith "]") 
-    part = (partition (\x -> head x /= '[')) $ tokens
+    part = (partition (\x -> head x /= '[')) $ tok
 
 nonEmptySubstrings :: [a] -> [[a]]
 nonEmptySubstrings = concatMap (tail . inits) . tails
@@ -29,16 +29,16 @@ candidatePalindromes :: String -> [String]
 candidatePalindromes = (filter ((4 ==) . length)) . nonEmptySubstrings
 
 isPalindrome :: String -> Bool
-isPalindrome string = ((reverse string) == string) 
-                    && ((string !! 0) /= string !! 1) 
+isPalindrome xs = ((reverse xs) == xs) 
+                    && ((xs !! 0) /= xs !! 1) 
 
 containsPalindrome :: String -> Bool
 containsPalindrome = (True `elem`) . (fmap isPalindrome) . candidatePalindromes
 
 supportsTLS :: String -> Bool
-supportsTLS string = outside && not inside
+supportsTLS xs = outside && not inside
   where 
-    tokens = tokenize string
-    outside = (any containsPalindrome) $ (fst tokens)
-    inside = (any containsPalindrome) $ (snd tokens)
+    tok = tokenize xs
+    outside = (any containsPalindrome) $ (fst tok)
+    inside = (any containsPalindrome) $ (snd tok)
      
