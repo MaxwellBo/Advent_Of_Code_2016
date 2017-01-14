@@ -8,14 +8,12 @@ type Elfs = S.Seq Int
 
 main :: IO ()
 main = do
-  print ("Part 1", partOne) -- 1830117
-  print ("Part 2", partTwo) -- 1417887
+  print ("Part 1", part 1) -- 1830117
+  print ("Part 2", part 2) -- 1417887
 
-partOne :: Elfs
-partOne = until ((1==) . S.length) (rotate . popNext) elfs
-
-partTwo :: Elfs
-partTwo = until ((1==) . S.length) (rotate . popOpposite) elfs
+part :: Int -> Elfs
+part n = until ((1==) . S.length) (rotate . (if n == 1 then popNext
+                                                       else popOpposite)) $ elfs
 
 elfs :: Elfs
 elfs = S.fromList [1..3012210]
