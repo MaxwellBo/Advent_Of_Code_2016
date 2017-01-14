@@ -37,23 +37,21 @@ def main(day, part, a_p=0, c_p=0):
                 test = int(ins[1]) if ins[1].isdigit() else registers[ins[1]]
                 jump = int(ins[2]) if ins[2].lstrip('-').isdigit() else registers[ins[2]]
 
-                if test: 
-                    pc += jump - 1
+                pc += jump - 1 if test else 0
 
             elif ins[0] == "tgl":
                 i = pc + registers[ins[1]]
                 
                 if i < len(program): 
-                    if len(program[i]) == 2:
-                        if program[i][0] == "inc":
-                            program[i][0] = "dec"
-                        else:
-                            program[i][0] = "inc"
-                    else:
-                        if program[i][0] == "jnz":
-                            program[i][0] = "cpy"
-                        else:
-                            program[i][0] = "jnz"
+                    ct = { "inc": "dec" # One arg
+                         , "dec": "inc"
+                         , "out": "inc"
+                         , "tgl": "inc" 
+                         , "jnz": "cpy" # Two arg
+                         , "cpy": "jnz"
+                         }
+
+                    program[i][0] = ct[program[i][0]]
 
             elif ins[0] == "out":
                 clock.append(registers[ins[1]])
@@ -76,8 +74,7 @@ if __name__ == '__main__':
     main(day=12, part=2, c_p=1) # a: 9227674
     print("\nDay 23")
     main(day=23, part=1, a_p=7) # a: 11683
-    main(day=23, part=2, a_p=12) # a: 479008243
+    # main(day=23, part=2, a_p=12) # a: 479008243
     print ("\nDay 25")
     for i in range(1, 100000):
         main(day=25, part=1, a_p=i) # 158
-
