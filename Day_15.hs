@@ -12,7 +12,7 @@ type Disc = (Position, Positions)
 main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_15_input.txt"
-  print ("Part 1", partOne fileContents)
+  print ("Part 1", partOne fileContents) -- 148737
 
 partOne :: String -> Int
 partOne = length . takeWhile (not.allClear) . iterate wait . parseDiscs
