@@ -97,7 +97,7 @@ viablePairs :: [Node] -> [(Node, Node)]
 viablePairs xs = do
   a <- xs
   b <- xs
-  guard (used a /= 0 )
+  guard (used a /= 0)
   guard (name a /= name b)
   guard (used a <= available b)
   return (a, b)
