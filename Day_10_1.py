@@ -1,53 +1,22 @@
 from collections import defaultdict
 
-class Bot(object):
+class Node(object):
     def __init__(self):
         self.chips = []
-        self.name = ""
         self.high_sink = None
         self.low_sink = None
 
-    def pop_min(self):
-        min_val = min(self.chips)
-        self.chips.remove(min_val)
-        self.low_sink.chips.append(min_val)
-
-    def pop_max(self):
-        max_val = max(self.chips)
-        self.chips.remove(max_val)
-        self.high_sink.chips.append(max_val)
-    
-    def tick(self):
-
-        if len(self.chips) == 2:
-            if 17 in self.chips and 61 in self.chips:
-                print(name)
-
-            self.pop_min()
-            self.pop_max()
-
-instructions = """value 5 goes to bot 2
-bot 2 gives low to bot 1 and high to bot 0
-value 3 goes to bot 1
-bot 1 gives low to output 1 and high to bot 0
-bot 0 gives low to output 2 and high to output 0
-value 2 goes to bot 2"""
-
 with open("inputs/Day_10_input.txt") as fp:
 
-    graph = defaultdict(Bot)
+    graph = defaultdict(Node)
 
-    # for line in instructions.split('\n'):
     for line in fp:
 
         tokens = line.split()
 
-        # print(tokens)
-
         if tokens[0] == "value":
             name = tokens[-2] + tokens[-1]
             graph[name].chips.append(int(tokens[1]))
-            graph[name].name = name
 
         elif tokens[0] == "bot":
             target_name = tokens[0] + tokens[1]
@@ -57,11 +26,19 @@ with open("inputs/Day_10_input.txt") as fp:
             graph[target_name].low_sink = graph[low_name]
             graph[target_name].high_sink = graph[high_name]
 
-            graph[target_name].name = target_name
-            graph[low_name].name = low_name
-            graph[high_name].name = high_name
-
-
-    for i in range(1, 1000):
+    
+    for i in range(1, 1000):    
         for (k, v) in graph.items():
-            v.tick()
+            if len(v.chips) == 2:
+                min_, max_ = sorted(v.chips)
+
+                if (min_, max_) == (17, 61):
+                    print("Part 1:", k) # 113
+
+                v.low_sink.chips.append(min_)
+                v.high_sink.chips.append(max_)
+                v.chips = []
+
+    
+    (a, b, c) = [graph[f"output{i}"].chips[0] for i in [0, 1, 2]]
+    print("Part 2:", a * b * c) # 12803

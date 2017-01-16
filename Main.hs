@@ -28,6 +28,7 @@ main = do
     putStrLn "Day 7" >> Day_7.main >> n
     putStrLn "Day 8" >> system "julia Day_8.jl" >> n
     putStrLn "Day 9" >> Day_9.main >> n
+    putStrLn "Day 10" >> system "python3 Day_10.py" >> n
     system "python3 Day_12_23_25.py" >> n
     putStrLn "Day 13" >> Day_13.main >> n
     putStrLn "Day 14" >> system "python3 Day_14.py" >> n
