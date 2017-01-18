@@ -12,7 +12,7 @@ seed = "11100010111110100"
 
 part :: Int -> String
 part n = checksum $ fillDisk (if n == 1 then 272 
-										else 35651584) seed
+                                        else 35651584) seed
 
 process :: String -> String
 process a = a ++ "0" ++ b 
