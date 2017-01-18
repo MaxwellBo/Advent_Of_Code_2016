@@ -8,7 +8,7 @@ class Node(object):
 
 with open("inputs/Day_10_input.txt") as fp:
 
-    graph = defaultdict(Node)
+    g = defaultdict(Node)
 
     for line in fp:
 
@@ -16,19 +16,18 @@ with open("inputs/Day_10_input.txt") as fp:
 
         if tokens[0] == "value":
             name = tokens[-2] + tokens[-1]
-            graph[name].chips.append(int(tokens[1]))
+            g[name].chips.append(int(tokens[1]))
 
         elif tokens[0] == "bot":
             target_name = tokens[0] + tokens[1]
             low_name = tokens[5] + tokens[6]
             high_name = tokens[-2] + tokens[-1]
 
-            graph[target_name].low_sink = graph[low_name]
-            graph[target_name].high_sink = graph[high_name]
+            g[target_name].low_sink = g[low_name]
+            g[target_name].high_sink = g[high_name]
 
-    
     for i in range(1, 1000):    
-        for (k, v) in graph.items():
+        for (k, v) in g.items():
             if len(v.chips) == 2:
                 min_, max_ = sorted(v.chips)
 
@@ -40,5 +39,5 @@ with open("inputs/Day_10_input.txt") as fp:
                 v.chips = []
 
     
-    (a, b, c) = [graph[f"output{i}"].chips[0] for i in [0, 1, 2]]
+    (a, b, c) = [g[f"output{i}"].chips[0] for i in [0, 1, 2]]
     print("Part 2:", a * b * c) # 12803

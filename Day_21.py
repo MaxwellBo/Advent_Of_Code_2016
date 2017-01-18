@@ -60,7 +60,7 @@ def main():
 			elif ("move", "position") == inits:
 				l = move(int(tok[2]), int(tok[5]), l)
 
-		print("".join(l)) # cbeghdaf
+		print("Part 1;", "".join(l)) # cbeghdaf
 
 if __name__ == '__main__':
 	main()
