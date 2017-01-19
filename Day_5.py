@@ -2,7 +2,7 @@
 
 import hashlib
 
-def main():
+def main(part):
 
     index = 0
     answer = ['?'] * 8
@@ -16,17 +16,19 @@ def main():
         hash_result = m.hexdigest()
 
         if hash_result[0:5] == '00000':
-            print(hash_result)
-
             try:
-                if answer[int(hash_result[5])] == '?':
-                    answer[int(hash_result[5])] = hash_result[6]
+                i = answer.index('?') if part == 1 else int(hash_result[5])
+                if answer[i] == '?':
+                    answer[i] = hash_result[5 if part == 1 else 6]
             except:
                 pass
 
-            print(answer) # 694190cd
+            if '?' not in answer:
+                print(f"Part {part}:", "".join(answer))
+                return
 
         index += 1
 
 if __name__ == '__main__':
-    main() 
+    main(1) # 1a3099aa
+    main(2) # 694190cd
