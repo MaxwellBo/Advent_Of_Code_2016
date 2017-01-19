@@ -1,3 +1,4 @@
+import qualified Day_3
 import qualified Day_4
 import qualified Day_7
 import qualified Day_9
@@ -20,7 +21,7 @@ main = do
     putStrLn "Day 2" 
         >> system "python3 Day_2_1.py"
         >> system "python3 Day_2_2.py" >> n
-    putStrLn "Day 3" >> system "python3 Day_3.py" >> n
+    putStrLn "Day 3" >> Day_3.main >> n
     putStrLn "Day 4" >> Day_4.main >> n
     putStrLn "Day 5" 
         >> system "python3 Day_5_1.py" >> n
