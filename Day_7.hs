@@ -10,10 +10,10 @@ import Data.List.Split
 main :: IO ()
 main = do
   fileContents <- readFile "inputs/Day_7_input.txt"
-  print ("Part 1", partOne fileContents) -- 110
+  print ("Part 1", part 1 fileContents) -- 110
 
-partOne :: String -> Int
-partOne = length . filter (== True) . (fmap supportsTLS) . lines
+part :: Int -> String -> Int
+part 1 = length . filter (== True) . (fmap supportsTLS) . lines
 
 tokenize :: String -> ([String], [String])
 tokenize xs = (fst part, tail <$> snd part)

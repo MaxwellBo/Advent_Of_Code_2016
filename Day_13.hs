@@ -12,14 +12,12 @@ seed = 1350
 
 main :: IO ()
 main = do
-  print ("Part 1", partOne) -- 92
-  print ("Part 2", partTwo) -- 124
+  print ("Part 1", part 1) -- 92
+  print ("Part 2", part 2) -- 124
 
-partOne :: Int
-partOne = length . takeWhile (\x -> not $ ((31, 39) `elem` x)) $ frontier 
-
-partTwo :: Int
-partTwo = length . nub . concat . (take 51) $ frontier
+part :: Int ->  Int
+part 1 = length . takeWhile (\x -> not $ ((31, 39) `elem` x)) $ frontier 
+part 2 = length . nub . concat . (take 51) $ frontier
 
 frontier :: [[Position]]
 frontier = iterate (nub . (move =<<)) [(1,1)]
