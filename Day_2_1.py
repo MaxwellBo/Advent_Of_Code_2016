@@ -1,50 +1,37 @@
 # http://adventofcode.com/2016/day/2
 
-numpad = [
-            [1, 2, 3], 
-            [4, 5, 6], 
-            [7, 8, 9]
-        ]
+def main(part):
 
+    x, y = (1, 1) # Coords of 5
 
-x, y = (1, 1) # Coords of 5
+    numpad = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
-code = []
+    def clamp(min_, max_, x):
+        return min(max_, max(min_, x))
 
-def parse_move(char):
-    
-    global x
-    global y
+    with open("inputs/Day_2_input.txt") as fp:
 
-    if char == "U":
-        y -= 1
-    elif char == "D":
-        y += 1
-    elif char == "L":
-        x -= 1
-    elif char == "R":
-        x += 1
+        code = []
 
-    if x > 2:
-        x = 2
-    elif x < 0:
-        x = 0
+        for row in fp:
+            for ins in row:
+                if ins == "U":
+                    y -= 1
+                elif ins == "D":
+                    y += 1
+                elif ins == "L":
+                    x -= 1
+                elif ins == "R":
+                    x += 1
 
-    if y > 2:
-        y = 2
-    elif y < 0:
-        y = 0
+                max_ = 2
+                x = clamp(0, max_, x)
+                y = clamp(0, max_, y)
 
-def record_digit():
-    code.append(numpad[y][x])
+            code.append(numpad[y][x])
+
+    print("Part 1:", "".join(str(i) for i in code)) # 61529 
 
 if __name__ == "__main__":
-    with open("inputs/Day_2_input.txt") as fp:
-        for row in fp:
-            for instruction in row:
-                parse_move(instruction)
+    main(1)
 
-            record_digit()
-
-    print("Part 1:", code) # 61529
-    
