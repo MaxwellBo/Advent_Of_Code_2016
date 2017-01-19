@@ -1,5 +1,8 @@
 # http://adventofcode.com/2016/day/2
 
+def clamp(min_, max_, x):
+    return min(max_, max(min_, x))
+
 def main(part):
 
     x, y = (1, 1) if part == 1 else (0, 2)
@@ -9,10 +12,6 @@ def main(part):
                                                                  , "56789"
                                                                  , " ABC "
                                                                  , "  D  "]
-
-
-    def clamp(min_, max_, x):
-        return min(max_, max(min_, x))
 
     with open("inputs/Day_2_input.txt") as fp:
 
