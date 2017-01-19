@@ -9,7 +9,6 @@ def main(part):
     with open("inputs/Day_24_input.txt") as fp:
 
         # ------ Read the input ----- #
-
         m = [ i.strip() for i in fp ]
 
         rows = len(m)
@@ -26,7 +25,6 @@ def main(part):
                     pois_to_node[int(m[y][x])] = (x, y)
 
         # ------ Build datastructures ----- #
-
         pois = len(pois_to_node)
 
         adjacency = np.zeros((pois, pois))
@@ -37,7 +35,6 @@ def main(part):
                 adjacency[start_name][finish_name] = weight
 
         # ------ Solve ----- #
-
         if part == 1:
             paths = [ (0, *i) for i in permutations(range(1, pois)) ]
         else:
