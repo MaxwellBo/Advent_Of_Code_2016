@@ -18,9 +18,7 @@ n = putStrLn ""
 main :: IO ()
 main = do
     putStrLn "Day 1" >> system "python3 Day_1.py" >> n
-    putStrLn "Day 2" 
-        >> system "python3 Day_2_1.py"
-        >> system "python3 Day_2_2.py" >> n
+    putStrLn "Day 2" >> system "python3 Day_2.py" >> n
     putStrLn "Day 3" >> Day_3.main >> n
     putStrLn "Day 4" >> Day_4.main >> n
     putStrLn "Day 5" 
