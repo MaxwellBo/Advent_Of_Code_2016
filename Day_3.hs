@@ -21,4 +21,6 @@ readTriangles = (fmap.fmap) read . fmap (words) . lines
 
 part :: Int -> String -> Int
 part 1 = length . filter isValid . readTriangles
-part 2 = length . filter isValid . concat . fmap (divvy 3 3) . transpose . readTriangles
+part 2 = length . filter isValid . transpose' . readTriangles
+  where
+    transpose' = concat . fmap (chunksOf 3) . transpose
