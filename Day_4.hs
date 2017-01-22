@@ -14,7 +14,7 @@ import qualified Data.Map as Map
 data Room = Room
   { name :: String
   , letters :: String
-  , sectorID :: Integer
+  , sectorID :: Int
   , checksum :: String
   }
 
@@ -24,12 +24,12 @@ main = do
   print ("Part 1", partOne fileContents) -- 173787
   print ("Part 2", partTwo fileContents) -- 548
 
-partOne :: String -> Integer 
+partOne :: String -> Int 
 partOne = sum
         . fmap sectorID
         . getRealRooms
 
-partTwo :: String -> Integer
+partTwo :: String -> Int
 partTwo = head
         . fmap snd
         . filter (\(x, _) -> "northpolecobject" `isPrefixOf` x)
@@ -55,13 +55,13 @@ readRoom string = Room {..}
 shift :: Room -> Room
 shift Room {..} = Room { name = (map (shiftChar sectorID)) $ name, .. }
 
-shiftChar :: Integer -> Char -> Char
+shiftChar :: Int -> Char -> Char
 shiftChar offset =  castOut . rotate . castIn
   where castIn = flip (-) (ord 'a') . ord
-        rotate = (`mod` 26) . (+(fromInteger offset))
+        rotate = (`mod` 26) . (+ offset)
         castOut = chr . (+ ord 'a')
 
-count :: Ord a => [a] -> Map.Map a Integer
+count :: Ord a => [a] -> Map.Map a Int
 count input = Map.fromListWith (+) [(c, 1) | c <- input]
 
 getTopFive :: String -> String

@@ -5,7 +5,6 @@ import numpy as np
 from itertools import *
 
 def main(part):
-
     with open("inputs/Day_24_input.txt") as fp:
 
         # ------ Read the input ----- #
