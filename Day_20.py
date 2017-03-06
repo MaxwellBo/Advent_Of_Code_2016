@@ -1,4 +1,4 @@
-# http://adventofcode.com/2016/day/19
+# http://adventofcode.com/2016/day/20
 
 from itertools import *
 
@@ -43,7 +43,7 @@ def main():
 
         ranges.sort(key=lambda x: x.lower)
 
-        
+
         print("Part 1:", ranges[0].upper + 1) # 22887907
 
         p2 = sum(ranges[i + 1].lower - ranges[i].upper - 1\
