@@ -3,7 +3,6 @@
 module Day_9 where
 
 import Data.List.Split
-import Control.Parallel.Strategies
 
 main :: IO ()
 main = do 
@@ -11,24 +10,30 @@ main = do
   print ("Part 1", part 1 fileContents) -- 115118
   print ("Part 2", part 2 fileContents) -- 11107527530
 
-part :: Int -> String -> Int
-part n = sum . fmap (dc n) . lines
+data Instruction 
+  = Literal String 
+  | Repeat Int [Instruction]
+  deriving (Show)
 
--- This is unreadable, I sincerely apologize
-dc :: Int -> String -> Int
-dc p ('(':xs) = runEval $ do
-    l <- rpar $ lf (duplicate repeats $ (take chars xs'))  
-    r <- rpar $ dc p (drop chars xs')
-    rseq l
-    rseq r
-    return (l + r)
-  where 
-    lf = if p == 1 then length else dc p
-    marker = fst . (break (==')')) $ xs
-    xs' = tail . snd . (break (==')')) $ xs
+type Part = Int
+
+parseInstructions :: String -> [Instruction]
+parseInstructions [] = []
+parseInstructions ('(': xs) = Repeat repeats (parseInstructions take) : parseInstructions rest
+  where
+    marker =    fst . (break (==')')) $ xs
+    (')':xs') = snd . (break (==')')) $ xs
     tok = splitOn "x" marker
     chars = read (tok !! 0)
     repeats = read (tok !! 1)
-    duplicate n = concat . replicate n
-dc p (x:xs) = 1 + dc p xs
-dc _ [] = 0
+    (take, rest) = splitAt chars xs'
+parseInstructions xss@(x:_) = Literal lit : parseInstructions xs
+  where
+    (lit, xs) = break (=='(') $ xss
+
+part :: Int -> String -> Int
+part n = sum . fmap value . parseInstructions
+  where
+    value :: Instruction -> Int
+    value (Literal xs) = length xs
+    value (Repeat repeats ins) = repeats * sum (value <$> ins)
