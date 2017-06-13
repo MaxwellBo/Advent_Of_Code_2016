@@ -15,25 +15,24 @@ data Instruction
   | Repeat Int [Instruction]
   deriving (Show)
 
-type Part = Int
-
-parseInstructions :: String -> [Instruction]
-parseInstructions [] = []
-parseInstructions ('(': xs) = Repeat repeats (parseInstructions take) : parseInstructions rest
-  where
-    marker =    fst . (break (==')')) $ xs
-    (')':xs') = snd . (break (==')')) $ xs
-    tok = splitOn "x" marker
-    chars = read (tok !! 0)
-    repeats = read (tok !! 1)
-    (take, rest) = splitAt chars xs'
-parseInstructions xss@(x:_) = Literal lit : parseInstructions xs
-  where
-    (lit, xs) = break (=='(') $ xss
-
 part :: Int -> String -> Int
 part n = sum . fmap value . parseInstructions
   where
     value :: Instruction -> Int
     value (Literal xs) = length xs
     value (Repeat repeats ins) = repeats * sum (value <$> ins)
+    
+    parseInstructions :: String -> [Instruction]
+    parseInstructions [] = []
+    parseInstructions ('(': xs) = Repeat repeats children : parseInstructions rest
+      where
+        marker =    fst . (break (==')')) $ xs
+        (')':xs') = snd . (break (==')')) $ xs
+        tok = splitOn "x" marker
+        chars = read (tok !! 0)
+        repeats = read (tok !! 1)
+        (take, rest) = splitAt chars xs'
+        children = if n == 1 then [Literal take] else (parseInstructions take)
+    parseInstructions xss@(x:_) = Literal lit : parseInstructions xs
+      where
+        (lit, xs) = break (=='(') $ xss
