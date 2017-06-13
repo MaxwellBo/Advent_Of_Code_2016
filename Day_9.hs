@@ -10,11 +10,6 @@ main = do
   print ("Part 1", part 1 fileContents) -- 115118
   print ("Part 2", part 2 fileContents) -- 11107527530
 
-data Instruction 
-  = Literal String 
-  | Repeat Int [Instruction]
-  deriving (Show)
-
 part :: Int -> String -> Int
 part n = parseInstructions
   where
