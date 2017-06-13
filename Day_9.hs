@@ -16,15 +16,11 @@ data Instruction
   deriving (Show)
 
 part :: Int -> String -> Int
-part n = sum . fmap value . parseInstructions
+part n = parseInstructions
   where
-    value :: Instruction -> Int
-    value (Literal xs) = length xs
-    value (Repeat repeats ins) = repeats * sum (value <$> ins)
-    
-    parseInstructions :: String -> [Instruction]
-    parseInstructions [] = []
-    parseInstructions ('(': xs) = Repeat repeats children : parseInstructions rest
+    parseInstructions :: String -> Int
+    parseInstructions [] = 0
+    parseInstructions ('(': xs) = (repeats * children) + parseInstructions rest
       where
         marker =    fst . (break (==')')) $ xs
         (')':xs') = snd . (break (==')')) $ xs
@@ -32,7 +28,7 @@ part n = sum . fmap value . parseInstructions
         chars = read (tok !! 0)
         repeats = read (tok !! 1)
         (take, rest) = splitAt chars xs'
-        children = if n == 1 then [Literal take] else (parseInstructions take)
-    parseInstructions xss@(x:_) = Literal lit : parseInstructions xs
+        children = if n == 1 then length take else (parseInstructions take)
+    parseInstructions xss@(x:_) = length lit + parseInstructions xs
       where
         (lit, xs) = break (=='(') $ xss
