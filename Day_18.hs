@@ -25,12 +25,11 @@ chunks :: String -> [String]
 chunks string = divvy 3 1 ("." ++ string ++ ".")
 
 deriveTrap :: String -> Char
-deriveTrap string
-  | string == "^^." = '^'
-  | string == ".^^" = '^'
-  | string == "^.." = '^'
-  | string == "..^" = '^'
-  | otherwise = '.'
+deriveTrap "^^." = '^'
+deriveTrap ".^^" = '^'
+deriveTrap "^.." = '^'
+deriveTrap "..^" = '^'
+deriveTrap _     = '.'
 
 deriveNextRow :: String -> Maybe (String, String)
 deriveNextRow this = Just (this, next) 
